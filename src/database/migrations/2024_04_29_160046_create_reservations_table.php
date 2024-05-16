@@ -25,7 +25,7 @@ class CreateReservationsTable extends Migration
                 ->cascadeOnUpdate();
             $table->date('reservation_date');
             $table->time('reservation_time');
-            $table->integer('number');
+            $table->integer('reservation_number');
             $table->timestamps();
         });
     }

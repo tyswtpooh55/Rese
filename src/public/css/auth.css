@@ -1,0 +1,78 @@
+.auth-box {
+    margin: 100px auto;
+    width: 400px;
+    height: auto;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 5px 5px 3px #a7a7a7;
+}
+
+.auth-box__heading {
+    background-color: #305dff;
+    padding: 5px 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.auth-form {
+    padding: 20px 30px;
+    text-align: right;
+}
+
+.auth-form__input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #000;
+    color: #757575;
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.auth-form__btn {
+    border: none;
+    background-color: #305dff;
+    color: #fff;
+    font-size: 13px;
+    border-radius: 5px;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+
+/* 入力フォームアイコン */
+.inp-wrap {
+    position: relative;
+    display: block;
+    margin-left: 30px;
+}
+
+.inp-wrap__user::before {
+    content: "";
+    position: absolute;
+    background: url(/images/user.icon.png) no-repeat;
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    transform: translate(-35px, 5px);
+}
+
+.inp-wrap__email::before {
+    content: "";
+    position: absolute;
+    background: url(/images/email.icon.png) no-repeat;
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    transform: translate(-35px, 5px);
+}
+
+.inp-wrap__password::before {
+    content: "";
+    position: absolute;
+    background: url(/images/password.icon.png) no-repeat;
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    transform: translate(-35px, 5px);
+}
