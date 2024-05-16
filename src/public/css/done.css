@@ -1,0 +1,29 @@
+.done-content {
+    margin: 100px auto;
+    width: 450px;
+    height: auto;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 5px 5px 3px #a7a7a7;
+    text-align: center;
+}
+
+.done-box__txt {
+    padding: 80px 0 50px 0;
+    font-size: 24px;
+    text-align: center;
+}
+
+.done-box__btn {
+    padding-bottom: 80px;
+}
+
+.done-box__btn--link {
+    border: none;
+    background-color: #305dff;
+    font-size: 13px;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+}

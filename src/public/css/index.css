@@ -1,0 +1,80 @@
+/* 検索窓 */
+
+.search-form__select,
+.search-form__input {
+    flex-grow: 1;
+    margin: 0;
+}
+
+/* カード */
+.shop-content {
+    width: 80%;
+    margin: 10px auto;
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+
+.shop-card {
+    width: 300px;
+    margin: 10px 10px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 3px #a7a7a7;
+}
+
+.card__img img {
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.card__content {
+    padding: 10px 20px;
+    background-color: #fff;
+}
+
+.card__content-ttl {
+    font-size: 20px;
+    font-weight: 900;
+    margin: 10px 0 0 0;
+}
+
+.card__content-tag {
+    font-size: 12px;
+    text-align: left;
+}
+
+.card__content-tag-area,
+.card__content-tag-genre {
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 15px;
+}
+
+.card__content--btn {
+    display: flex;
+    padding-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card__content-detail--btn {
+    border: none;
+    background-color: #305dff;
+    font-size: 13px;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.card__content-favorite--btn {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.favorite-icon {
+    width: 35px;
+    height: 35px;
+}
