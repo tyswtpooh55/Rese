@@ -11,32 +11,35 @@ use DateInterval;
 use DateTime;
 use Illuminate\Support\Facades\Validator;
 
-class ReservationForm extends Component
+class EditForm extends Component
 {
-    public $shop;
+    public $reservationId;
     public $reservationDate;
     public $reservationTime;
     public $reservationNumber;
+    public $shop;
     public $today;
     public $oneYearLater;
-    public $selectableTimes =[];
-    public $selectableNumbers = [];
+    public $selectableTimes;
+    public $selectableNumbers;
 
-    public function mount($shop)
+    public function mount($shop, $reservationId)
     {
         $this->shop = $shop;
+
+        // 予約情報取得
+        $reservation = Reservation::findOrFail($reservationId);
+        $this->reservationId = $reservation->id;
+        $this->reservationDate = $reservation->reservation_date;
+        $this->reservationTime = $reservation->reservation_time;
+        $this->reservationNumber = $reservation->reservation_number;
 
         // 予約カレンダーの選択範囲
         $this->today = Carbon::today()->format('Y-m-d');
         $this->oneYearLater = Carbon::today()->addYear()->format('Y-m-d');
 
         // 予約人数($selectableNumbers)定義
-        $this->selectableNumbers = range(1,10);
-
-        // 初期化
-        $this->reservationDate = $this->today;
-        $this->reservationTime = null;
-        $this->reservationNumber = 1;
+        $this->selectableNumbers = range(1, 10);
 
         // 選択可能時間の取得
         $this->updateSelectableTimes();
@@ -69,7 +72,6 @@ class ReservationForm extends Component
             $openTime->add($reservationInterval);
         }
 
-        $this->reservationTime = $this->selectableTimes[0] ?? null;
     }
 
     public function updatedReservationDate()
@@ -77,19 +79,17 @@ class ReservationForm extends Component
         $this->updateSelectableTimes();
     }
 
-    public function createReservation()
+    public function editReservation()
     {
         $this->validationWithFormRequest();
 
-        Reservation::create([
-            'user_id' => Auth::id(),
-            'shop_id' => $this->shop->id,
-            'reservation_date' => $this->reservationDate,
-            'reservation_time' => $this->reservationTime,
-            'reservation_number' => $this->reservationNumber,
-        ]);
+        $reservation = Reservation::findOrFail($this->reservationId);
+        $reservation->reservation_date = $this->reservationDate;
+        $reservation->reservation_time = $this->reservationTime;
+        $reservation->reservation_number = $this->reservationNumber;
+        $reservation->update();
 
-        return redirect()->route('done');
+        return redirect()->route('mypage.index');
     }
 
     protected function validationWithFormRequest()
@@ -107,9 +107,10 @@ class ReservationForm extends Component
         $validator->validate();
     }
 
+
     public function render()
     {
-        return view('livewire.reservation-form', [
+        return view('livewire.edit-form',[
             'shop' => $this->shop,
             'today' => $this->today,
             'oneYearLater' => $this->oneYearLater,

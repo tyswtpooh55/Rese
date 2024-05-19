@@ -1,32 +1,33 @@
 <div class="rese__box">
-    <h3 class="rese__ttl">予約</h3>
+    <h3 class="rese__ttl">予約変更</h3>
     <div class="rese-form">
-        <form class="rese-form__form" wire:submit.prevent='createReservation'>
+        <form class="rese-form__form" wire:submit.prevent='editReservation'>
             @csrf
             <div class="rese-form__date">
-                <input type="date" min="{{ $today }}" max="{{ $oneYearLater }}" wire:model='reservationDate'  name="reservationDate">
+                <input type="date" min="{{ $today }}" max="{{ $oneYearLater }}" wire:model='reservationDate'
+                    name="reservationDate">
                 @error('reservationDate')
-                    <p class="error">{{ $message }}</p>
+                <p class="error">{{ $message }}</p>
                 @enderror
             </div>
             <div class="rese-form__time">
                 <select name="reservationTime" wire:model='reservationTime'>
                     @foreach ($selectableTimes as $selectableTime)
-                        <option value="{{ $selectableTime }}">{{ $selectableTime }} </option>
+                    <option value="{{ $selectableTime }}">{{ $selectableTime }} </option>
                     @endforeach
                 </select>
                 @error('reservationTime')
-                    <p class="error">{{ $message }}</p>
+                <p class="error">{{ $message }}</p>
                 @enderror
             </div>
             <div class="rese-form__number">
                 <select name="reservationNumber" wire:model='reservationNumber'>
                     @foreach ($selectableNumbers as $selectableNumber)
-                        <option value="{{ $selectableNumber }}">{{ $selectableNumber }}人</option>
+                    <option value="{{ $selectableNumber }}">{{ $selectableNumber }}人</option>
                     @endforeach
                 </select>
                 @error('reservationNumber')
-                    <p class="error">{{ $message }}</p>
+                <p class="error">{{ $message }}</p>
                 @enderror
                 <input type="hidden" wire:model='{{ $shop->id }}' name="shop_id">
             </div>
@@ -50,7 +51,7 @@
                     </tr>
                 </table>
             </div>
-            <input class="form__btn--rese" type="submit" name="rese" value="予約する" />
+            <input class="form__btn--rese" type="submit" name="edit-rese" value="変更する" />
         </form>
     </div>
 </div>

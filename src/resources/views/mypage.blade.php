@@ -45,7 +45,7 @@
                             </tr>
                         </table>
                         <div class="rese__edit--btn">
-                            <a href="{{ route('reservation.edit', $reservation->id) }}"></a>
+                            <a class="rese__edit--btn-link" href="{{ route('editReservation', $reservation->id) }}">変更する</a>
                         </div>
                     </div>
                     @endforeach
