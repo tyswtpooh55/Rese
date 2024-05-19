@@ -13,7 +13,7 @@ class ReservationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,20 @@ class ReservationRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'reservationDate' => ['required', 'date'],
+            'reservationTime' => ['required'],
+            'reservationNumber' => ['required', 'integer', 'min:1', 'max:10'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'reservationDate.required' => '日付を選択してください',
+            'reservationTime.required' => '時間を選択してください',
+            'reservationNumber.required' => '人数を選択してください',
+            'reservationNumber.min' => '人数は:min人以上を選択してください',
+            'reservationNumber.max' => '人数は:max人以下を選択してください',
         ];
     }
 }

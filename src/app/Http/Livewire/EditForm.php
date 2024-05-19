@@ -9,7 +9,6 @@ use App\Http\Requests\ReservationRequest;
 use Carbon\Carbon;
 use DateInterval;
 use DateTime;
-use Illuminate\Support\Facades\Validator;
 
 class EditForm extends Component
 {
@@ -79,34 +78,28 @@ class EditForm extends Component
         $this->updateSelectableTimes();
     }
 
+    protected function rules()
+    {
+        return (new ReservationRequest())->rules();
+    }
+
+    protected function messages()
+    {
+        return (new ReservationRequest())->messages();
+    }
+
     public function editReservation()
     {
-        $this->validationWithFormRequest();
+        $validateData = $this->validate();
 
         $reservation = Reservation::findOrFail($this->reservationId);
-        $reservation->reservation_date = $this->reservationDate;
-        $reservation->reservation_time = $this->reservationTime;
-        $reservation->reservation_number = $this->reservationNumber;
+        $reservation->reservation_date = $validateData['reservationDate'];
+        $reservation->reservation_time = $validateData['reservationTime'];
+        $reservation->reservation_number = $validateData['reservationNumber'];
         $reservation->update();
 
         return redirect()->route('mypage.index');
     }
-
-    protected function validationWithFormRequest()
-    {
-        $request = new ReservationRequest();
-
-        $data = [
-            'reservationDate' => $this->reservationDate,
-            'reservationTime' => $this->reservationTime,
-            'reservationNumber' => $this->reservationNumber,
-        ];
-
-        $validator = Validator::make($data, $request->rules());
-
-        $validator->validate();
-    }
-
 
     public function render()
     {

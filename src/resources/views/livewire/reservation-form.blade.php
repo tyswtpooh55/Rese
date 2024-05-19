@@ -28,7 +28,7 @@
                 @error('reservationNumber')
                     <p class="error">{{ $message }}</p>
                 @enderror
-                <input type="hidden" wire:model='{{ $shop->id }}' name="shop_id">
+                <input type="hidden" wire:model='shopId' name="shop_id">
             </div>
             <div class="rese-check">
                 <table class="rese-check__table">
