@@ -13,23 +13,17 @@
             <form class="auth-form__form" action="/register" method="POST">
                 @csrf
                 <div class="inp-wrap inp-wrap__user"><input class="auth-form__input" type="text" name="name" id="name" placeholder="Username" /></div>
-                <p class="auth-form__error">
                     @error('name')
-                        {{ $message }}
+                    <p class="error">{{ $message }}</p>
                     @enderror
-                </p>
                 <div class="inp-wrap inp-wrap__email"><input class="auth-form__input" type="email" name="email" id="email" placeholder="Email" /></div>
-                <p class="auth-form__error">
                     @error('email')
-                        {{ $message }}
+                    <p class="error">{{ $message }}</p>
                     @enderror
-                </p>
                 <div class="inp-wrap inp-wrap__password"><input class="auth-form__input" type="password" name="password" id="password" placeholder="Password" /></div>
-                <p class="auth-form__error">
                     @error('password')
-                        {{ $message }}
+                    <p class="error">{{ $message }}</p>
                     @enderror
-                </p>
                 <input class="auth-form__btn" type="submit" value="登録" />
             </form>
         </div>

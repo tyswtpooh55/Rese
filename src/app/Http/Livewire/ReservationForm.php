@@ -6,14 +6,15 @@ use Livewire\Component;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ReservationRequest;
+use App\Models\Shop;
 use Carbon\Carbon;
 use DateInterval;
 use DateTime;
-use Illuminate\Support\Facades\Validator;
 
 class ReservationForm extends Component
 {
     public $shop;
+    public $shopId;
     public $reservationDate;
     public $reservationTime;
     public $reservationNumber;
@@ -24,7 +25,8 @@ class ReservationForm extends Component
 
     public function mount($shop)
     {
-        $this->shop = $shop;
+        $this->shopId = $shop->id;
+        $this->shop = Shop::find($this->shopId);
 
         // 予約カレンダーの選択範囲
         $this->today = Carbon::today()->format('Y-m-d');
@@ -77,34 +79,30 @@ class ReservationForm extends Component
         $this->updateSelectableTimes();
     }
 
+
+    protected function rules()
+    {
+        return (new ReservationRequest())->rules();
+    }
+
+    protected function messages()
+    {
+        return (new ReservationRequest())->messages();
+    }
+
     public function createReservation()
     {
-        $this->validationWithFormRequest();
+        $validateData = $this->validate();
 
         Reservation::create([
             'user_id' => Auth::id(),
             'shop_id' => $this->shop->id,
-            'reservation_date' => $this->reservationDate,
-            'reservation_time' => $this->reservationTime,
-            'reservation_number' => $this->reservationNumber,
+            'reservation_date' => $validateData['reservationDate'],
+            'reservation_time' => $validateData['reservationTime'],
+            'reservation_number' => $validateData['reservationNumber'],
         ]);
 
         return redirect()->route('done');
-    }
-
-    protected function validationWithFormRequest()
-    {
-        $request = new ReservationRequest();
-
-        $data = [
-            'reservationDate' => $this->reservationDate,
-            'reservationTime' => $this->reservationTime,
-            'reservationNumber' => $this->reservationNumber,
-        ];
-
-        $validator = Validator::make($data, $request->rules());
-
-        $validator->validate();
     }
 
     public function render()
