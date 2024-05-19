@@ -77,6 +77,20 @@
     text-align: left;
 }
 
+.rese__edit--btn {
+    text-align: right;
+    padding: 0 20px;
+}
+
+.rese__edit--btn-link {
+    background-color: #fff;
+    color: #305dff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 /*お気に入り店舗*/
 .mypage__fav {
     width: 50%;

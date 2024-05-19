@@ -41,5 +41,17 @@ class MypageController extends Controller
         return back();
     }
 
+    public function editReservation($id)
+    {
+        $shop = Shop::findOrFail($id);
+        $reservation = Reservation::findOrFail($id);
+        $shopName = $shop->name;
+
+        return view('edit', compact(
+            'shop',
+            'shopName',
+            'reservation',
+        ));
+    }
 
 }
