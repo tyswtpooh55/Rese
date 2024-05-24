@@ -43,7 +43,7 @@
                     </tr>
                     <tr class="check__row">
                         <th class="check__label">Time</th>
-                        <td class="check__data">{{ $reservationTime }}</td>
+                        <td class="check__data">{{ \Carbon\Carbon::parse($reservationTime)->format('H:i') }}</td>
                     </tr>
                     <tr class="check__row">
                         <th class="check__label">Number</th>

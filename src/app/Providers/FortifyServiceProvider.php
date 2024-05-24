@@ -3,8 +3,6 @@
 namespace App\Providers;
 
 use App\Actions\Fortify\CreateNewUser;
-use App\Http\Controllers\RegistrationController;
-use App\Http\Requests\RegisterRequest;
 //use App\Actions\Fortify\ResetUserPassword;
 //use App\Actions\Fortify\UpdateUserPassword;
 //use App\Actions\Fortify\UpdateUserProfileInformation;
@@ -53,8 +51,8 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton(
-            \Laravel\Fortify\Contracts\RegisterResponse::class,
-            \App\Http\Responses\CustomRegisterResponse::class
+            RegisterResponse::class,
+            CustomRegisterResponse::class
         );
 
         Fortify::loginView(function () {
@@ -65,6 +63,10 @@ class FortifyServiceProvider extends ServiceProvider
             $email = (string) $request->email;
 
             return Limit::perMinute(10)->by($email . $request->ip());
+        });
+
+        Fortify::verifyEmailView(function () {
+            return view('auth.verify-email');
         });
     }
 }

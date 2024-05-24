@@ -11,9 +11,10 @@
             <div class="mypage__rese">
                 <div class="rese__heading">
                     <h3 class="rese__ttl">予約状況</h3>
+                    <a class="rese__visited--link" href="{{ route('visitedShop') }}">来店店舗一覧</a>
                 </div>
                 <div class="rese-wrap">
-                    @foreach ($user->reservations as $reservation)
+                    @foreach ($displayReservations as $reservation)
                     <div class="rese-card">
                         <div class="rese-card__heading">
                             <div class="rese-card__ttl">

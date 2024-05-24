@@ -54,14 +54,12 @@
     font-size: 15px;
 }
 
-
-/*予約変更*/
-.rese__edit {
+/*口コミ*/
+.review__content {
     width: 45%;
 }
 
-.rese__box {
-    position: relative;
+.review__box {
     width: 100%;
     height: 700px;
     background-color: #305dff;
@@ -69,7 +67,7 @@
     box-shadow: 5px 5px 3px #a7a7a7;
 }
 
-.rese__ttl {
+.review__heading {
     color: #fff;
     font-size: 24px;
     font-weight: bold;
@@ -77,53 +75,41 @@
     margin: 0;
 }
 
-.rese-form__date input {
-    min-width: 175px;
-    height: 30px;
-    margin: 5px 30px;
-    padding: 0 10px;
-    border: none;
-    border-radius: 5px;
-}
-
-.rese-form__time select,
-.rese-form__number select {
-    width: 85%;
-    height: 30px;
-    margin: 5px 30px;
-    padding: 0 10px;
-    border: none;
-    border-radius: 5px;
-}
-
-.rese-check {
+.review__card{
     width: 80%;
     background-color: #4d7fff;
-    padding: 25px 15px;
     border-radius: 5px;
-    margin: 10px 30px;
+    margin: 10px auto;
+    padding: 10px;
 }
 
-.check__label,
-.check__data {
-    font-size: 16px;
-    font-weight: normal;
-    padding: 5px 10px;
-    text-align: left;
+.review__no-review {
+    font-size: 14px;
     color: #fff;
 }
 
-.form__btn--rese {
-    width: 100%;
-    height: 55px;
-    border: none;
-    background-color: #0538ff;
+.review__table {
+    border-top: #fff;
+}
+
+.review__rating {
+    font-size: 1.2em;
+}
+
+.rating__yellow {
+    color: #f5b301;
+}
+
+.rating__gray {
+    color: #ddd;
+}
+
+.review__comment {
     font-size: 16px;
     color: #fff;
-    position: absolute;
-    bottom: 0;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
+}
+
+.review__reservation-date {
+    font-size: 12px;
+    color: #a7a7a7;
 }
