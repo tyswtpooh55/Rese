@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Area;
+use App\Models\Comment;
 use App\Models\Genre;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,9 +55,25 @@ class ShopController extends Controller
         $shop = Shop::findOrFail($id);
         $shopName = $shop->name;
 
+        $averageRating = $shop->comments()->avg('rating');
+        $countRating = $shop->comments()->count();
+
         return view('detail', compact(
             'shop',
-            'shopName'
+            'shopName',
+            'averageRating',
+            'countRating',
         ));
+    }
+
+    public function reviews($id)
+    {
+        $shop = Shop::findOrFail($id);
+        $reviews = $shop->comments()
+            ->with('reservation:id,reservation_date')
+            ->select('id', 'comment', 'rating', 'reservation_id')
+            ->get();
+
+        return view('reviews', compact('shop', 'reviews'));
     }
 }

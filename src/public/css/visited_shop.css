@@ -1,0 +1,52 @@
+.visited-shop-content{
+    width: 80%;
+}
+
+.visited-shop__heading {
+    font-size: 24px;
+    text-align: center;
+}
+
+.visited-shop__wrap {
+    display: flex;
+    margin: 10px auto;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.visited-shop__box {
+    width: 450px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 3px #a7a7a7;
+    background-color: #305dff;
+    color: #fff;
+    padding: 30px;
+    margin: 20px auto;
+}
+
+.visited-shop__ttl {
+    font-size: 16px;
+    margin-left: 50px;
+}
+
+.visited-shop__table--label,
+.visited-shop__table--data {
+    font-size: 16px;
+    font-weight: normal;
+    padding: 10px 30px 10px 0px;
+    text-align: left;
+}
+
+.visited-shop__btn {
+    text-align: right;
+    padding: 0 20px;
+}
+
+.visited-shop__btn--link {
+    background-color: #fff;
+    color: #305dff;
+    padding: 5px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}

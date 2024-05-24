@@ -8,7 +8,7 @@
     <div class="detail-content">
         <div class="detail__shop">
             <div class="shop__ttl">
-                <a href="" class="shop__ttl--btn">&lt;</a>
+                <a href="/mypage" class="shop__ttl--btn">&lt;</a>
                 <h3 class="shop__ttl--txt">{{ $shop->name }}</h3>
             </div>
             <div class="shop__img">
@@ -24,6 +24,7 @@
         </div>
         <div class="rese__edit">
             @livewire('edit-form', ['shop' => $shop, 'reservationId' => $reservation->id])
+            @livewireScripts
         </div>
     </div>
 @endsection

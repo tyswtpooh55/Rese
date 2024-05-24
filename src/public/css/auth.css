@@ -32,6 +32,7 @@
 
 .auth-form__btn {
     border: none;
+    text-decoration: none;
     background-color: #305dff;
     color: #fff;
     font-size: 13px;
@@ -75,4 +76,24 @@
     width: 25px;
     height: 25px;
     transform: translate(-35px, 5px);
+}
+
+.email-card__header {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 50px auto;
+}
+
+.email-card__body {
+    text-align: center;
+    font-size: 18px;
+}
+
+.email-resend {
+    border: none;
+    color: #305dff;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
 }

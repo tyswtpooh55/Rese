@@ -1,0 +1,138 @@
+.detail-content {
+    width: 90%;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+/*店舗詳細*/
+.detail__shop {
+    width: 45%;
+}
+
+.shop__ttl {
+    display: flex;
+    align-items: center;
+}
+
+.shop__ttl--txt {
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.shop__img img {
+    width: 100%;
+}
+
+.shop__detail-tag {
+    font-size: 16px;
+    text-align: left;
+}
+
+.shop__detail-tag-area,
+.shop__detail-tag-genre {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.shop__detail-txt {
+    font-size: 15px;
+}
+
+/*コメント*/
+.comment-box {
+    width: 45%;
+}
+
+.comment-box__content {
+    position: relative;
+    width: 100%;
+    height: 700px;
+    padding-top: 20px;
+    background-color: #305dff;
+    border-radius: 5px;
+    box-shadow: 5px 5px 3px #a7a7a7;
+}
+
+.comment__heading {
+    width: 80%;
+    background-color: #4d7fff;
+    padding: 25px 15px;
+    border-radius: 5px;
+    margin: 20px auto;
+}
+
+.comment__label,
+.comment__data {
+    font-size: 16px;
+    font-weight: normal;
+    padding: 5px 10px;
+    text-align: left;
+    color: #fff;
+}
+
+.comment__form {
+    display: flex;
+    justify-content: center;
+}
+
+.comment__form--form {
+    width: 80%;
+}
+
+.form__comment {
+    width: 100%;
+    height: 200px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.form__btn {
+    width: 100%;
+    height: 55px;
+    border: none;
+    background-color: #0538ff;
+    font-size: 16px;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*5段階評価*/
+
+.form__rating {
+    display: flex;
+    direction: rtl;
+    justify-content: left;
+}
+
+.form__rating input {
+    display: none;
+}
+
+.form__rating label {
+    font-size: 2em;
+    color: #ddd;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.form__rating input:checked ~ label {
+    color: #f5b301;
+}
+
+.form__rating input:hover ~ label {
+    color: #f5b301;
+}
+
+.form__rating label:hover ~ label {
+    color: #f5b301;
+}

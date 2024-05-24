@@ -59,7 +59,6 @@
         </header>
         <main>
             @yield('content')
-            @livewireScripts
         </main>
     </div>
 </body>
