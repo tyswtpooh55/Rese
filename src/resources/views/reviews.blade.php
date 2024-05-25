@@ -44,7 +44,7 @@
                                                 <span class="rating__gray">&#9733;</span>
                                             @endif
                                         @endfor
-                                        ({{ $review->rating }})
+                                        <span class="rating__count">({{ $review->rating }})</span>
                                     </div>
                                     <p class="review__comment">
                                         {{ $review->comment }}

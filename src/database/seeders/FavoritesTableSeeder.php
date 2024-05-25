@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Favorite;
 use Illuminate\Database\Seeder;
 
 class FavoritesTableSeeder extends Seeder
@@ -13,6 +14,6 @@ class FavoritesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Favorite::factory()->count(30)->create();
     }
 }

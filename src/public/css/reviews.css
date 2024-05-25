@@ -71,7 +71,7 @@
     color: #fff;
     font-size: 24px;
     font-weight: bold;
-    padding: 30px 25px;
+    padding: 10px 50px;
     margin: 0;
 }
 
@@ -89,7 +89,12 @@
 }
 
 .review__table {
-    border-top: #fff;
+    padding: 10px 30px;
+}
+
+.review__list {
+    list-style: none;
+    border-top:1px dashed #fff ;
 }
 
 .review__rating {
@@ -104,6 +109,10 @@
     color: #ddd;
 }
 
+.rating__count {
+    color: #fff;
+}
+
 .review__comment {
     font-size: 16px;
     color: #fff;
@@ -112,4 +121,5 @@
 .review__reservation-date {
     font-size: 12px;
     color: #a7a7a7;
+    text-align: end;
 }
