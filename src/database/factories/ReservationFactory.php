@@ -25,8 +25,14 @@ class ReservationFactory extends Factory
         }
         $times[] = '23:00:00';
 
+        //一般ユーザーのID取得
+        $userIds = User::whereDoesntHave('roles', function ($query) {
+            $query->where('name', 'admin')
+            ->orWhere('name', 'shop_manager');
+        })->pluck('id')->toArray();
+
         return [
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => $this->faker->randomElement($userIds),
             'shop_id' => Shop::inRandomOrder()->first()->id,
             'reservation_Date' => $this->faker->dateTimeBetween('2024-01-01', '2025-01-01')->format('Y-m-d'),
             'reservation_time' => $this->faker->randomElement($times),

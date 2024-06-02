@@ -1,0 +1,63 @@
+.reservations__heading {
+    width: 70%;
+    margin: 10px auto;
+}
+
+.reservations__heading--calendar {
+    display: flex;
+    justify-content: end;
+}
+
+.reservations__calendar--inp {
+    border: none;
+    width: 150px;
+    height: 50px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.reservations__heading--date {
+    text-align: center;
+    font-size: 20px;
+}
+
+.date_change {
+    text-decoration: none;
+    margin: 0 30px;
+    padding: 0 10px;
+    background: #305dff;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 24px;
+}
+
+.reservations__box {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    background: #fff;
+    margin: 20px auto;
+    padding: 30px 10px;
+}
+
+.reservations__table {
+    width: 80%;
+    background: #fff;
+    border-radius: 5px;
+    margin: 20px;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.reservations__row {
+    border-top: 1px solid #4d7fff;
+    border-bottom: 1px solid #4d7fff;
+}
+
+.reservations__label,
+.reservations__data {
+    font-size: 20px;
+    padding: 15px 20px;
+}

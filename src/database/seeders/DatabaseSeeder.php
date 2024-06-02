@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             AreasTableSeeder::class,
             GenresTableSeeder::class,
             ShopsTableSeeder::class,
-            UsersTableSeeder::class,
+            MasterDatabaseSeeder::class,
             ReservationsTableSeeder::class,
             FavoritesTableSeeder::class,
             CommentsTableSeeder::class,

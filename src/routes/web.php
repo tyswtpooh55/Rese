@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\MypageController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -18,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// 非会員含め
 Route::get('/', [ShopController::class, 'index']);
 Route::post('/', [ShopController::class, 'index']);
 Route::get('/detail/{id}', [ShopController::class, 'detail'])->name('shop.detail');
@@ -26,19 +29,21 @@ Route::get('/thanks', function () {
         return view('auth/thanks');
     })->name('thanks');
 
+
+// メール認証
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
-    return redirect('/mypage');
+    return redirect('/');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 Route::get('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
     return back()->with('message', '認証リンクを送信しました');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
 
-
+// 会員・ログイン済み
 Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage.index');
     Route::post('/favorite/create/{id}', [FavoriteController::class, 'createFavorite'])->name('createFavorite');
@@ -51,4 +56,20 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/mypage/visited', [MypageController::class, 'visitedShop'])->name('visitedShop');
     Route::get('/comment/{id}', [MypageController::class, 'comment'])->name('comment');
     Route::post('/createComment', [MypageController::class, 'createComment'])->name('createComment');
+});
+
+// 管理者用ルートグループ
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/manager', [AdminController::class, 'viewManagers'])->name('viewManagers');
+    Route::post('/manager/create', [AdminController::class, 'createManager'])->name('createManager');
+    Route::post('/manager/delete/{id}', [AdminController::class, 'deleteManager'])->name('deleteManager');
+    Route::get('/email', [AdminController::class, 'writeEmail'])->name('writeEmail');
+    Route::post('/email/send', [AdminController::class, 'sendEmail'])->name('sendEmail');
+});
+
+// 店舗責任者用ルートグループ
+Route::prefix('manager')->name('manager.')->middleware(['auth', 'role:manager', 'check.shop'])->group(function () {
+    Route::get('/reservations/{shop}', [ManagerController::class, 'viewReservations'])->name('viewReservations');
+    Route::get('/detail/{shop}', [ManagerController::class, 'editDetail'])->name('editDetail');
+    Route::post('/update', [ManagerController::class, 'updateDetail'])->name('updateDetail');
 });

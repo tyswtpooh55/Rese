@@ -25,31 +25,104 @@
                 <div class="hamburger-menu">
                     <ul>
                         @if (Auth::check())
-                        <li><form action="/" method="GET">
-                            @csrf
-                            <button class="hamburger-menu__label" type="submit">Home</button>
-                        </form></li>
-                        <li><form action="/logout" method="POST" >
-                            @csrf
-                            <button class="hamburger-menu__label" type="submit">Logout</button>
-                        </form></li>
-                        <li><form action="/mypage" method="GET">
-                            @csrf
-                            <button class="hamburger-menu__label" type="submit">Mypage</button>
-                        </form></li>
+                            <!-- 管理者用メニュー-->
+                            @role('admin')
+                            <li>
+                                <form action="/" method="GET">
+                                    @csrf
+                                    <button class="hamburger-menu__label" type="submit">Home</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="/logout" method="POST">
+                                    @csrf
+                                    <button class="hamburger-menu__label" type="submit">Logout</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="{{ route('admin.viewManagers') }}" method="GET">
+                                    @csrf
+                                    <button class="hamburger-menu__label" type="submit">Managers</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="{{ route('admin.writeEmail') }}" method="GET">
+                                    @csrf
+                                    <button class="hamburger-menu__label" type="submit">Send Email</button>
+                                </form>
+                            </li>
+                            @endrole
+                            <!-- 店舗責任者用メニュー -->
+                            @role('manager')
+                            @php
+                                $user = auth()->user();
+                                $shopId = $user->shops->first()->id;
+                            @endphp
+                            <li>
+                                <form action="/" method="GET">
+                                    @csrf
+                                    <button class="hamburger-menu__label" type="submit">Home</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="/logout" method="POST">
+                                    @csrf
+                                    <button class="hamburger-menu__label" type="submit">Logout</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="{{ route('manager.editDetail', ['shop' => $shopId ?? '']) }}" method="GET">
+                                    @csrf
+                                    <button class="hamburger-menu__label" type="submit">Edit Shop Datail</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="{{ route('manager.viewReservations', ['shop' => $shopId ?? '']) }}" method="GET">
+                                    @csrf
+                                    <button class="hamburger-menu__label" type="submit">Reservations</button>
+                                </form>
+                            </li>
+                            @endrole
+                            <!-- ユーザーメニュー -->
+                            @unlessrole('admin|manager')
+                            <li>
+                                <form action="/" method="GET">
+                                    @csrf
+                                    <button class="hamburger-menu__label" type="submit">Home</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="/logout" method="POST" >
+                                    @csrf
+                                    <button class="hamburger-menu__label" type="submit">Logout</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="/mypage" method="GET">
+                                    @csrf
+                                    <button class="hamburger-menu__label" type="submit">Mypage</button>
+                                </form>
+                            </li>
+                            @endunlessrole
                         @else
-                        <li><form action="/" method="GET">
-                            @csrf
-                            <button class="hamburger-menu__label" type="submit">Home</button>
-                        </form></li>
-                        <li><form action="/register" method="GET" >
-                            @csrf
-                            <button class="hamburger-menu__label" type="submit">Registration</button>
-                        </form></li>
-                        <li><form action="/login" method="GET">
-                            @csrf
-                            <button class="hamburger-menu__label" type="submit">Login</button>
-                        </form></li>
+                            <li>
+                                <form action="/" method="GET">
+                                    @csrf
+                                    <button class="hamburger-menu__label" type="submit">Home</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="/register" method="GET" >
+                                    @csrf
+                                    <button class="hamburger-menu__label" type="submit">Registration</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="/login" method="GET">
+                                    @csrf
+                                    <button class="hamburger-menu__label" type="submit">Login</button>
+                                </form>
+                            </li>
                         @endif
                     </ul>
                 </div>
@@ -61,5 +134,6 @@
             @yield('content')
         </main>
     </div>
+    @livewireScripts
 </body>
 </html>

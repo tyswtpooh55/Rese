@@ -29,6 +29,11 @@
 @endsection
 
 @section('content')
+    <div class="">
+        @foreach ($errors->all() as $error)
+            {{ $error }}
+        @endforeach
+    </div>
     <div class="shop-content">
         @foreach ($shops as $shop)
             <div class="shop-card">

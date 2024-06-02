@@ -24,7 +24,6 @@
         </div>
         <div class="rese__edit">
             @livewire('edit-form', ['shop' => $shop, 'reservationId' => $reservation->id])
-            @livewireScripts
         </div>
     </div>
 @endsection

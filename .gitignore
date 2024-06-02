@@ -14,5 +14,6 @@
 /src/.idea
 /src/.vscode
 /memo
+.vscode
 /docker/mysql/data
 er.drawio.png
