@@ -17,11 +17,11 @@ class CreateShopsTable extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('area_id')
-                ->constrained()
+                ->constrained('areas')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->foreignId('genre_id')
-                ->constrained()
+                ->constrained('genres')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->string('image_path');

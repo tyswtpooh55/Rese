@@ -33,7 +33,6 @@
         <div class="detail__rese">
             @if (Auth::check())
                 @livewire('reservation-form', ['shop' => $shop])
-                @livewireScripts
             @else
                 <div class="rese__login">
                     <p class="login__message">予約にはログインが必要です</p>

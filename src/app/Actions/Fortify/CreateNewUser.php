@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
-use App\Http\Requests\RegisterRequest;
+use App\Models\Role;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -38,10 +38,14 @@ class CreateNewUser implements CreatesNewUsers
         $request -> merge($input);
         $request ->validate();*/
 
+        $role_id = Role::where('role_name', 'customer')->firstOrFail()->id;
+
         return User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'role_id' => $role_id,
+            'shop_id' => null,
         ]);
     }
 }

@@ -1,0 +1,55 @@
+.detail-content {
+    width: 90%;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+/*店舗詳細*/
+.detail__shop {
+    width: 45%;
+}
+
+.shop__ttl {
+    display: flex;
+    align-items: center;
+}
+
+.shop__ttl--btn {
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 5px 5px 3px #a7a7a7;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    padding: 4px;
+}
+
+.shop__ttl--txt {
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.shop__img img {
+    width: 100%;
+}
+
+.shop__detail-tag {
+    font-size: 16px;
+    text-align: left;
+}
+
+.shop__detail-tag-area,
+.shop__detail-tag-genre {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.shop__detail-txt {
+    font-size: 15px;
+}

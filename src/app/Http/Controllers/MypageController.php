@@ -9,6 +9,7 @@ use App\Models\Comment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class MypageController extends Controller
 {
@@ -53,8 +54,10 @@ class MypageController extends Controller
 
     public function editReservation($id)
     {
-        $shop = Shop::findOrFail($id);
         $reservation = Reservation::findOrFail($id);
+
+        $shop = Shop::findOrFail($reservation->shop_id);
+
         $shopName = $shop->name;
 
         return view('edit', compact(

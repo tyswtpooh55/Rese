@@ -1,0 +1,133 @@
+.email-content {
+    width: 80%;
+    margin: 20px auto 100px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* 送信先選択*/
+.select-recipient-content {
+    width: 40%;
+    background: #fff;
+    height: 700px;
+    overflow-y: auto;
+    border-radius: 5px;
+    padding: 20px 40px;
+}
+
+.select-recipient__heading {
+    text-align: center;
+    border-bottom: 1px dashed #4d7fff;
+}
+
+.select-recipient__ttl {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.select-recipient__box {
+    margin: 20px auto;
+}
+
+.recipient__all--inp {
+    margin-left: 40px;
+}
+
+.recipient__all--label {
+    font-size: 18px;
+    font-weight: bolder;
+    margin-left: 10px;
+}
+
+.recipient__list {
+    margin-top: 20px;
+}
+
+.recipient__list--list {
+    list-style: none;
+    margin: 10px 0;
+}
+
+.recipient__list--label {
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.writing-content {
+    width: 45%;
+}
+
+.email-box {
+    position: relative;
+    width: 90%;
+    height: 700px;
+    background: #305dff;
+    border-radius: 5px;
+    padding: 30px;
+    box-shadow: 5px 5px 3px #a7a7a7;
+}
+
+.email-box__sub,
+.email-box__message {
+    margin: 20px auto;
+}
+
+.email__sub,
+.email__message {
+    color: #fff;
+    font-size: 18px;
+}
+
+.email__sub--inp,
+.email__message--inp {
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.email__sub--inp {
+    width: 70%;
+    height: 30px;
+    min-width: 180px;
+    margin-left: 10px;
+}
+
+.email__message--inp {
+    width: 90%;
+    height: 300px;
+    margin: 20px 10px;
+}
+
+.email__sending--btn {
+    width: 100%;
+    height: 55px;
+    border: none;
+    background-color: #0538ff;
+    font-size: 16px;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.alert-success,
+.alert-error {
+    background: #4d7fff;
+    margin: 30px 100px;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.alert-error {
+    list-style: none;
+    text-decoration: underline 3px dotted #f08080;
+}

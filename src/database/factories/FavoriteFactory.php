@@ -17,8 +17,13 @@ class FavoriteFactory extends Factory
      */
     public function definition()
     {
+        $userIds = User::whereDoesntHave('roles', function ($query) {
+            $query->where('name', 'admin')
+                ->orWhere('name', 'shop_manager');
+        })->pluck('id')->toArray();
+
         return [
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => $this->faker->randomElement($userIds),
             'shop_id' => Shop::inRandomOrder()->first()->id,
         ];
     }
