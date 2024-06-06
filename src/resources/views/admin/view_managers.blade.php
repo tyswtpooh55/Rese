@@ -20,20 +20,24 @@
                     </th>
                 </tr>
                 @foreach ($managers as $manager)
-                <tr class="managers-list__row">
-                    <td class="managers-list__data">
-                        {{ $manager->shop->name }}
-                    </td>
-                    <td class="managers-list__data">
-                        {{ $manager->name }}
-                    </td>
-                    <td class="managers-list__data">
-                        <form action="{{ route('admin.deleteManager', ['id' => $manager->id ]) }}" method="POST">
-                            @csrf
-                            <button class="managers-list__delete--btn">削除</button>
+                    @foreach ($manager->shops as $shop)
+                    <tr class="managers-list__row">
+                        <td class="managers-list__data">
+                            {{ $shop->name }}
+                        </td>
+                        <td class="managers-list__data">
+                            {{ $manager->name }}
+                        </td>
+                        <td class="managers-list__data">
+                            <form action="{{ route('admin.deleteManager') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="user_id" value="{{ $manager->id }}">
+                                <input type="hidden" name="shop_id" value="{{ $shop->id }}">
+                                <input class="managers-list__delete--btn" type="submit" value="削除">
                         </form>
                     </td>
                 </tr>
+                    @endforeach
                 @endforeach
             </table>
         </div>
@@ -50,7 +54,7 @@
                     @error('shop_id')
                         <p class="error">{{ $message }}</p>
                     @enderror
-                    <input type="text" name="name" id="name" placeholder="Manager Name" class="create-manager__form--input"/ value="{{ old('name') }}">
+                    <input type="text" name="name" id="name" placeholder="Manager Name" class="create-manager__form--input" value="{{ old('name') }}">
                     @error('name')
                     <p class="error">{{ $message }}</p>
                     @enderror

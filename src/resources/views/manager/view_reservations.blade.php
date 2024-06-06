@@ -21,17 +21,20 @@
 @section('content')
     <div class="view-reservations__content">
         <div class="reservations__heading">
+            <div class="reservations__heading--ttl">
+                <h2>{{ $shop->name }}</h2>
+            </div>
             <div class="reservations__heading--calendar">
                 <form method="get" action="{{ route('manager.viewReservations', ['shop' => $shop->id]) }}">
                     <input class="reservations__calendar--inp" type="date" name="date" onchange="this.form.submit()" value="{{ $thisDate->toDateString() }}">
                 </form>
             </div>
             <div class="reservations__heading--date">
-                <h2 class="reservations__date">
+                <h3 class="reservations__date">
                     <a class="date_change" href="{{ route('manager.viewReservations', ['shop' => $shop->id, 'date' => $prevDate->toDateString()]) }}">&lt;</a>
                     {{ $thisDate->format('Y-m-d') }}
                     <a class="date_change" href="{{ route('manager.viewReservations', ['shop' => $shop->id, 'date' => $nextDate->toDateString()]) }}">&gt;</a>
-                </h2>
+                </h3>
             </div>
         </div>
         <div class="reservations__box">

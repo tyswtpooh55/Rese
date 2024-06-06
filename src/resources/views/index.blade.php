@@ -29,22 +29,20 @@
 @endsection
 
 @section('content')
-    <div class="">
-        @foreach ($errors->all() as $error)
-            {{ $error }}
-        @endforeach
-    </div>
     <div class="shop-content">
         @foreach ($shops as $shop)
             <div class="shop-card">
                 <div class="card__img">
-                    <img src="{{ $shop->image_path }}" alt="img" />
+                    <img src="{{ asset('storage/' . $shop->image_path) }}" alt="{{ $shop->name }}" />
                 </div>
                 <div class="card__content">
                     <p class="card__content-ttl">{{ $shop->name }}</p>
                     <div class="card__content-tag">
                             <p class="card__content-tag-area">#{{ $shop->area->area }}</p>
                             <p class="card__content-tag-genre">#{{ $shop->genre->genre }}</p>
+                    </div>
+                    <div class="rating--average">
+                        <div class="rating-star" style="--rating: {{ $shop->averageRating }};"></div>
                     </div>
                     <div class="card__content--btn">
                         <a class="card__content-detail--btn" href="{{ route('shop.detail', ['id' => $shop->id]) }}">詳しくみる</a>

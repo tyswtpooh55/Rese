@@ -25,13 +25,14 @@ class MasterDatabaseSeeder extends Seeder
         $sendEmail = Permission::create(['name' => 'send email']);
         $manageManager = Permission::create(['name'=> 'manage manager']);
         $editShop = Permission::create(['name' => 'edit shop']);
+        $createShop = Permission::create(['name' => 'create shop']);
         $checkReservations = Permission::create(['name' => 'check reservations']);
 
         //adminRoleに管理者がもつ権限を付与
         $adminRole->givePermissionTo($sendEmail, $manageManager);
 
         //managerRoleに店舗責任者がもつ権限を付与
-        $managerRole->givePermissionTo($editShop, $checkReservations);
+        $managerRole->givePermissionTo($editShop, $createShop, $checkReservations);
 
         //管理者登録
         $administer = User::create([

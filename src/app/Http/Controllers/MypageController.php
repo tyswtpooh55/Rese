@@ -9,7 +9,6 @@ use App\Models\Comment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class MypageController extends Controller
 {
@@ -33,15 +32,10 @@ class MypageController extends Controller
             ->with('shop')
             ->get();
 
-        $shops = Shop::with(['favorites' => function ($query) {
-            $query->where('user_id', Auth::id());
-        }])->get();
-
         return view('mypage', compact(
             'user',
             'displayReservations',
             'favorites',
-            'shops',
         ));
     }
 

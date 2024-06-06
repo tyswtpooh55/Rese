@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Reservation;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ReservationRequest;
 use Carbon\Carbon;
 use DateInterval;

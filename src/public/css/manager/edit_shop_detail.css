@@ -7,7 +7,7 @@
 
 /*店舗詳細*/
 .detail__shop {
-    width: 45%;
+    width: 40%;
 }
 
 .shop__ttl {
@@ -52,4 +52,71 @@
 
 .shop__detail-txt {
     font-size: 15px;
+}
+
+/*店舗概要更新*/
+.edit-shop {
+    width: 45%;
+    margin-bottom: 50px;
+}
+
+.edit__form--form {
+    padding: 30px 40px;
+}
+
+.edit__box {
+    position: relative;
+    width: 90%;
+    height: 800px;
+    background: #305dff;
+    border-radius: 5px;
+    box-shadow: 5px 5px 3px #a7a7a7;
+}
+
+.edit__form--name,
+.edit__form--area,
+.edit__form--genre,
+.edit__form--detail {
+    margin-top: 15px;
+}
+
+.edit__form--label {
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+}
+
+.edit__form--inp,
+.edit__form--select {
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: 100%;
+    height: 35px;
+    font-size: 16px;
+}
+
+.edit__form--textarea {
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    height: 200px;
+    font-size: 16px;
+}
+
+.edit__form--btn {
+    width: 100%;
+    height: 55px;
+    border: none;
+    background-color: #0538ff;
+    font-size: 16px;
+    color: #fff;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
 }

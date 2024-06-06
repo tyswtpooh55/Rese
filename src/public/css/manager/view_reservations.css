@@ -3,6 +3,11 @@
     margin: 10px auto;
 }
 
+.reservations__heading--ttl h2{
+    text-align: center;
+    font-size: 26px;
+}
+
 .reservations__heading--calendar {
     display: flex;
     justify-content: end;

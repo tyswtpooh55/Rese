@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Shop;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,9 +23,6 @@ class CheckShop
         $user = Auth::user();
         $shop = $request->route('shop');
         $shopId = $shop->id;
-
-        Log::info('UserID:' . ($user->id));
-        Log::info('ShopID:' . $shopId);
 
         if ($user && DB::table('shop_user')
             ->where('user_id', $user->id)

@@ -30,11 +30,11 @@
                         All Customers
                     </label>
                     <ul class="recipient__list">
-                        @foreach ($users as $user)
+                        @foreach ($customers as $customer)
                         <li class="recipient__list--list">
-                            <input type="checkbox" name="recipients[]" value="{{ $user->id }}">
+                            <input type="checkbox" name="recipients[]" value="{{ $customer->id }}">
                             <label class="recipient__list--label">
-                                {{ $user->name }}
+                                {{ $customer->name }}
                             </label>
                         </li>
                         @endforeach

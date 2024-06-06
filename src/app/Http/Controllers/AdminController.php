@@ -4,20 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ManagerRequest;
 use App\Http\Requests\SendEmailRequest;
-use App\Models\Role;
 use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
+/*    public function __construct()
+    {
+        $this->middleware('permission:manage manager')->only(['viewManagers', 'deleteManager','createManager']);
+        $this->middleware('permission:send email')->only(['writeEmail', 'sendEmail']);
+    }*/
+
     public function viewManagers()
     {
-        $managers = User::whereHas('role', function ($query) {
-            $query->where('role_name', 'shop_manager');
-        })->orderBy('shop_id')->get();
+        $managers = User::role('manager')
+            ->with('shops')
+            ->get();
 
         $shops = Shop::all();
 
@@ -27,24 +33,40 @@ class AdminController extends Controller
         ));
     }
 
-    public function deleteManager($id)
+    public function deleteManager(Request $request)
     {
-        User::find($id)->delete();
+        $userId = $request->input('user_id');
+        $shopId = $request->input('shop_id');
+
+        $manager = User::find($userId);
+
+        if ($manager->shops()->count() > 1) {
+            //複数店舗の責任者の場合、shop_userテーブルから関係を削除
+            DB::table('shop_user')->where('user_id', $userId)
+                ->where('shop_id', $shopId)
+                ->delete();
+        } else {
+            //１つの店舗のみの場合、ユーザー自体を削除
+            $manager->delete();
+        }
 
         return back();
     }
 
     public function createManager(ManagerRequest $request)
     {
-        $shopManagerRole = Role::where('role_name', 'shop_manager')->first();
-
-        User::create([
+        $manager = User::create([
             'name' => $request->name,
-            'role_id' => $shopManagerRole->id,
-            'shop_id' => $request->shop_id,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'email_verified_at' => now(),
+        ]);
+
+        $manager->assignRole('manager');
+
+        DB::table('shop_user')->insert([
+            'shop_id' => $request->shop_id,
+            'user_id' => $manager->id,
         ]);
 
         return redirect()->route('admin.viewManagers');
@@ -52,11 +74,9 @@ class AdminController extends Controller
 
     public function writeEmail()
     {
-        $users = User::whereHas('role', function ($query) {
-            $query->where('role_name', 'customer');
-        })->get();
+        $customers = User::doesntHave('roles')->get();
 
-        return view('admin/write_emails', compact('users'));
+        return view('admin/write_emails', compact('customers'));
     }
 
     public function sendEmail(SendEmailRequest $request)
@@ -71,13 +91,9 @@ class AdminController extends Controller
 
         $customers = [];
         if (in_array('all', $recipients)) {
-            $customers = User::whereHas('role', function($query) {
-                $query->where('role_name', 'customer');
-            })->get();
+            $customers = User::doesntHave('roles')->get();
         } else {
-            $customers = User::whereIn('id', $recipients)->whereHas('role', function ($query) {
-                $query->where('role_name', 'customer');
-            })->get();
+            $customers = User::whereIn('id', $recipients)->get();
         }
 
         foreach ($customers as $customer) {

@@ -78,3 +78,40 @@
     width: 35px;
     height: 35px;
 }
+
+.rating-star {
+    font-size: 20px;
+    display: inline-block;
+    position: relative;
+    width: 100px;
+    height: 20px;
+}
+
+.rating-star::before {
+    content: '★★★★★';
+    position: absolute;
+    top: 0px;
+    left: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 20px;
+    color: #ddd;
+    z-index: 1;
+}
+
+.rating-star::after {
+    content: '★★★★★';
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: calc(var(--rating)/5*100%);
+    font-size: 20px;
+    color: #f5b301;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 2;
+}
+
+.rating-star[style*="--rating: 0"]::after {
+    color: #ddd;
+}

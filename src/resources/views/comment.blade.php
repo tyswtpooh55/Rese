@@ -11,7 +11,7 @@
                 <h3 class="shop__ttl--txt">{{ $reservation->shop->name }}</h3>
             </div>
             <div class="shop__img">
-                <img src="{{ $reservation->shop->image_path }}" alt="image" />
+                <img src="{{ asset('storage/' . $reservation->shop->image_path) }}" alt="{{ $reservation->shop->name }}" />
             </div>
             <div class="shop__detail-tag">
                 <p class="shop__detail-tag-area">#{{ $reservation->shop->area->area }}</p>

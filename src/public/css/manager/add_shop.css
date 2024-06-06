@@ -1,0 +1,63 @@
+.main-content {
+    width: 80%;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.add-shop__form {
+    background: #fff;
+    border-radius: 5px;
+    padding: 30px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+.add-shop__form form {
+    width: 70%;
+}
+
+.form__item {
+    margin: 10px;
+}
+
+.form__label {
+    font-size: 18px;
+}
+
+.form__inp,
+.form__select {
+    width: 100%;
+    height: 35px;
+    font-size: 18px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #a7a7a7;
+}
+
+.form__textarea {
+    width: 100%;
+    height: 200px;
+    font-size: 18px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #a7a7a7;
+}
+
+.form__inp--file {
+    border: none;
+}
+
+.form__btn {
+    text-align: center;
+}
+
+.form__btn--btn {
+    border: none;
+    border-radius: 5px;
+    background: #305dff;
+    color: #fff;
+    font-size: 18px;
+    padding: 5px 10px;
+}
