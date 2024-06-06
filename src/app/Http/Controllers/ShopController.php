@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Area;
-use App\Models\Comment;
 use App\Models\Genre;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,7 +38,9 @@ class ShopController extends Controller
         // 検索結果
         $shops = $searchQuery->get()->map(function ($shop) {
             $shop->isFavorited =$shop->favorites->isNotEmpty();
+            $shop->averageRating = $shop->comments->avg('rating') ?? 0;
             return $shop;
+
         });
 
         return view('index', compact(
@@ -55,7 +56,7 @@ class ShopController extends Controller
         $shop = Shop::findOrFail($id);
         $shopName = $shop->name;
 
-        $averageRating = $shop->comments()->avg('rating');
+        $averageRating = $shop->comments()->avg('rating') ?? 0;
         $countRating = $shop->comments()->count();
 
         return view('detail', compact(

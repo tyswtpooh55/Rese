@@ -12,7 +12,7 @@
             <div class="rese-form__time">
                 <select name="reservationTime" wire:model='reservationTime'>
                     @foreach ($selectableTimes as $selectableTime)
-                        <option value="{{ $selectableTime }}">{{ $selectableTime }} </option>
+                        <option value="{{ $selectableTime }}">{{ $selectableTime }}</option>
                     @endforeach
                 </select>
                 @error('reservationTime')

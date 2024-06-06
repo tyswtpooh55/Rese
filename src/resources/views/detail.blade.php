@@ -12,7 +12,7 @@
                 <h3 class="shop__ttl--txt">{{ $shop->name }}</h3>
             </div>
             <div class="shop__img">
-                <img src="{{ $shop->image_path }}" alt="image" />
+                <img src="{{ asset('storage/' . $shop->image_path) }}" alt="{{ $shop->name }}" />
             </div>
             <div class="shop__detail-tag">
                 <p class="shop__detail-tag-area">#{{ $shop->area->area }}</p>
@@ -23,7 +23,9 @@
             </div>
             <div class="shop__comment">
                 <div class="comment__rating--average">
-                    <livewire:rating-star :rating="$averageRating" :count-rating="$countRating" />
+                    <div class="rating-star" style="--rating: {{ $averageRating }};"></div>
+                    <span class="rating__count">({{ $countRating }})</span><span class="rating__average">{{ number_format($averageRating, 1)
+                        }}</span>
                 </div>
                 <div class="comment__view--btn">
                     <a class="comment__view--btn-link" href="{{ route('reviews', $shop->id) }}">口コミをみる</a>

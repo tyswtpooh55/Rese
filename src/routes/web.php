@@ -62,14 +62,18 @@ Route::middleware(['auth', 'verified'])->group(function(){
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/manager', [AdminController::class, 'viewManagers'])->name('viewManagers');
     Route::post('/manager/create', [AdminController::class, 'createManager'])->name('createManager');
-    Route::post('/manager/delete/{id}', [AdminController::class, 'deleteManager'])->name('deleteManager');
+    Route::post('/manager/delete', [AdminController::class, 'deleteManager'])->name('deleteManager');
     Route::get('/email', [AdminController::class, 'writeEmail'])->name('writeEmail');
     Route::post('/email/send', [AdminController::class, 'sendEmail'])->name('sendEmail');
 });
 
 // 店舗責任者用ルートグループ
-Route::prefix('manager')->name('manager.')->middleware(['auth', 'role:manager', 'check.shop'])->group(function () {
-    Route::get('/reservations/{shop}', [ManagerController::class, 'viewReservations'])->name('viewReservations');
-    Route::get('/detail/{shop}', [ManagerController::class, 'editDetail'])->name('editDetail');
-    Route::post('/update', [ManagerController::class, 'updateDetail'])->name('updateDetail');
+Route::prefix('manager')->name('manager.')->middleware(['auth', 'role:manager'])->group(function () {
+    Route::get('/add', [ManagerController::class, 'addShop'])->name('addShop');
+    Route::post('/create', [ManagerController::class, 'createShop'])->name('createShop');
+    Route::middleware('check.shop')->group(function() {
+        Route::get('/reservations/{shop}', [ManagerController::class, 'viewReservations'])->name('viewReservations');
+        Route::get('/detail/{shop}', [ManagerController::class, 'editDetail'])->name('editDetail');
+        Route::post('/update/{shop}', [ManagerController::class, 'updateDetail'])->name('updateDetail');
+    });
 });

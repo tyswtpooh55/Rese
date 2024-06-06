@@ -12,7 +12,7 @@
                 <h3 class="shop__ttl--txt">{{ $shop->name }}</h3>
             </div>
             <div class="shop__img">
-                <img src="{{ $shop->image_path }}" alt="image" />
+                <img src="{{ asset('storage/' . $shop->image_path) }}" alt="{{ $shop->name }}" />
             </div>
             <div class="shop__detail-tag">
                 <p class="shop__detail-tag-area">#{{ $shop->area->area }}</p>
