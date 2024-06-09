@@ -23,7 +23,16 @@
             </div>
         </div>
         <div class="rese__edit">
-            @livewire('edit-form', ['shop' => $shop, 'reservationId' => $reservation->id])
+            <div class="rese__box">
+                <h3 class="rese__ttl">予約変更</h3>
+                <div class="rese-form">
+                    <form action="{{ route('updateReservation', $reservation->id) }}" class="rese-form__form" method="POST">
+                        @csrf
+                        @livewire('reservation-form', ['shop' => $shop, 'reservationId' => $reservation->id])
+                        <input class="form__btn--rese" type="submit" name="edit-rese" value="変更する" />
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

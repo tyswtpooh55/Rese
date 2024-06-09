@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReservationRequest;
 use App\Models\Favorite;
 use App\Models\Reservation;
 use App\Models\Review;
@@ -61,6 +62,19 @@ class MypageController extends Controller
             'shopName',
             'reservation',
         ));
+    }
+
+    public function updateReservation(ReservationRequest $request, $id)
+    {
+        $reservation = Reservation::findOrFail($id);
+
+        $reservation->update([
+            'date' => $request->date,
+            'time' => $request->time,
+            'number' => $request->number,
+        ]);
+
+        return redirect('/mypage');
     }
 
     public function visitedShop()
