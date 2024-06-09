@@ -17,110 +17,112 @@
 <body>
     <div class="app">
         <header class="header">
-            <div class="hamburger-icon" id="hamburger-icon">
-                <input type="checkbox" class="hamburger__input" id="hamburger__input">
-                <label for="hamburger__input" class="hamburger__btn"><span></span></label>
+            <div class="menu-icon">
+                <input type="checkbox" class="menu__input" id="menu__input">
+                <label for="menu__input" class="menu__btn"><span></span></label>
                 <h2 class="header__logo">Rese</h2>
+
                 <!-- ハンバーガーメニューここから-->
-                <div class="hamburger-menu">
+                <div class="menu">
                     <ul>
+                        <li>
+                            <form action="/" method="GET">
+                                @csrf
+                                <button class="menu__label" type="submit">HOME</button>
+                            </form>
+                        </li>
+
+                        <!-- ユーザー登録済み -->
                         @if (Auth::check())
-                            <!-- 管理者用メニュー-->
-                            @role('admin')
-                            <li>
-                                <form action="/" method="GET">
-                                    @csrf
-                                    <button class="hamburger-menu__label" type="submit">Home</button>
-                                </form>
-                            </li>
                             <li>
                                 <form action="/logout" method="POST">
                                     @csrf
-                                    <button class="hamburger-menu__label" type="submit">Logout</button>
+                                    <button class="menu__label" type="submit">Logout</button>
                                 </form>
                             </li>
+
+                            <!-- 管理者用メニュー-->
+                            @role('admin')
                             <li>
                                 <form action="{{ route('admin.viewManagers') }}" method="GET">
                                     @csrf
-                                    <button class="hamburger-menu__label" type="submit">Managers</button>
+                                    <button class="menu__label" type="submit">Managers</button>
                                 </form>
                             </li>
                             <li>
                                 <form action="{{ route('admin.writeEmail') }}" method="GET">
                                     @csrf
-                                    <button class="hamburger-menu__label" type="submit">Send Email</button>
+                                    <button class="menu__label" type="submit">Send Email</button>
                                 </form>
                             </li>
                             @endrole
+
                             <!-- 店舗責任者用メニュー -->
                             @role('manager')
                             @php
                                 $user = auth()->user();
                                 $shopId = $user->shops->first()->id;
+                                $countShop = $user->shops->count();
                             @endphp
+                            @if ($countShop > 1)
                             <li>
-                                <form action="/" method="GET">
+                                <form action="{{ route('manager.selectShop', ['action' => 'edit']) }}" method="GET">
                                     @csrf
-                                    <button class="hamburger-menu__label" type="submit">Home</button>
+                                    <button class="menu__label" type="submit">Edit Shop Detail</button>
                                 </form>
                             </li>
+                            @else
                             <li>
-                                <form action="/logout" method="POST">
+                                <form action="{{ route('manager.editDetail', ['shop' => $shopId]) }}" method="GET">
                                     @csrf
-                                    <button class="hamburger-menu__label" type="submit">Logout</button>
+                                    <button class="menu__label" type="submit">Edit Shop Datail</button>
                                 </form>
                             </li>
+                            @endif
                             <li>
-                                <form action="{{ route('manager.editDetail', ['shop' => $shopId ?? '']) }}" method="GET">
+                                <form action="{{ route('manager.addShop') }}" method="GET">
                                     @csrf
-                                    <button class="hamburger-menu__label" type="submit">Edit Shop Datail</button>
+                                    <button class="menu__label" type="submit">Add Shop</button>
                                 </form>
                             </li>
+                            @if ($countShop > 1)
                             <li>
-                                <form action="{{ route('manager.viewReservations', ['shop' => $shopId ?? '']) }}" method="GET">
+                                <form action="{{ route('manager.selectShop', ['action' => 'reservations']) }}" method="GET">
                                     @csrf
-                                    <button class="hamburger-menu__label" type="submit">Reservations</button>
+                                    <button class="menu__label" type="submit">Reservations</button>
                                 </form>
                             </li>
+                            @else
+                            <li>
+                                <form action="{{ route('manager.viewReservations', ['shop' => $shopId]) }}" method="GET">
+                                    @csrf
+                                    <button class="menu__label" type="submit">Reservations</button>
+                                </form>
+                            </li>
+                            @endif
                             @endrole
+
                             <!-- ユーザーメニュー -->
                             @unlessrole('admin|manager')
                             <li>
-                                <form action="/" method="GET">
-                                    @csrf
-                                    <button class="hamburger-menu__label" type="submit">Home</button>
-                                </form>
-                            </li>
-                            <li>
-                                <form action="/logout" method="POST" >
-                                    @csrf
-                                    <button class="hamburger-menu__label" type="submit">Logout</button>
-                                </form>
-                            </li>
-                            <li>
                                 <form action="/mypage" method="GET">
                                     @csrf
-                                    <button class="hamburger-menu__label" type="submit">Mypage</button>
+                                    <button class="menu__label" type="submit">Mypage</button>
                                 </form>
                             </li>
                             @endunlessrole
                         @else
-                            <li>
-                                <form action="/" method="GET">
-                                    @csrf
-                                    <button class="hamburger-menu__label" type="submit">Home</button>
-                                </form>
-                            </li>
+                        <!-- アカウント未登録 -->
                             <li>
                                 <form action="/register" method="GET" >
                                     @csrf
-                                    <button class="hamburger-menu__label" type="submit">Registration</button>
+                                    <button class="menu__label" type="submit">Registration</button>
                                 </form>
                             </li>
                             <li>
                                 <form action="/login" method="GET">
                                     @csrf
-                                    <button class="hamburger-menu__label" type="submit">Login</button>
+                                    <button class="menu__label" type="submit">Login</button>
                                 </form>
                             </li>
                         @endif

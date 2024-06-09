@@ -1,0 +1,23 @@
+.select__content {
+    width: 80%;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.select__heading h2 {
+    font-size: 30px;
+}
+
+.select__list li {
+    list-style: none;
+}
+
+.select__btn {
+    border: none;
+    background: transparent;
+    margin: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #305dff;
+    cursor: pointer;
+}

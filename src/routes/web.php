@@ -8,6 +8,7 @@ use App\Http\Controllers\MypageController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Contracts\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +27,9 @@ Route::post('/', [ShopController::class, 'index']);
 Route::get('/detail/{id}', [ShopController::class, 'detail'])->name('shop.detail');
 Route::get('/detail/reviews/{id}', [ShopController::class,  'reviews'])->name('reviews');
 Route::get('/thanks', function () {
-        return view('auth/thanks');
+        return view('/auth/thanks');
     })->name('thanks');
-
+Route::get('/reservation/data/{id}', [ShopController::class, 'reservationData'])->name('reservationData');
 
 // メール認証
 Route::get('/email/verify', function () {
@@ -51,11 +52,12 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/done', function () {
         return view('done');
     })->name('done');
-    Route::post('/deleteReservation/{id}', [MypageController::class, 'deleteReservation'])->name('deleteReservation');
+    Route::post('/reservation/delete/{id}', [MypageController::class, 'deleteReservation'])->name('deleteReservation');
     Route::get('/reservation/edit/{id}', [MypageController::class, 'editReservation'])->name('editReservation');
     Route::get('/mypage/visited', [MypageController::class, 'visitedShop'])->name('visitedShop');
     Route::get('/comment/{id}', [MypageController::class, 'comment'])->name('comment');
     Route::post('/createComment', [MypageController::class, 'createComment'])->name('createComment');
+    Route::get('/reservation/qr/{id}', [MypageController::class, 'qrCode'])->name('reservationQr');
 });
 
 // 管理者用ルートグループ
@@ -69,6 +71,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
 
 // 店舗責任者用ルートグループ
 Route::prefix('manager')->name('manager.')->middleware(['auth', 'role:manager'])->group(function () {
+    Route::get('/select/{action}', [ManagerController::class, 'selectShop'])->name('selectShop');
     Route::get('/add', [ManagerController::class, 'addShop'])->name('addShop');
     Route::post('/create', [ManagerController::class, 'createShop'])->name('createShop');
     Route::middleware('check.shop')->group(function() {
