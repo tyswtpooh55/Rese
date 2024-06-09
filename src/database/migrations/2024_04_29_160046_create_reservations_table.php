@@ -23,9 +23,9 @@ class CreateReservationsTable extends Migration
                 ->constrained('shops')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table->date('reservation_date');
-            $table->time('reservation_time');
-            $table->integer('reservation_number');
+            $table->date('date');
+            $table->time('time');
+            $table->integer('number');
             $table->timestamps();
         });
     }

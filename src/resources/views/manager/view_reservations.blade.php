@@ -45,13 +45,13 @@
                         {{ $reservation->user->name }}
                     </td>
                     <td class="reservations__data">
-                        {{ $reservation->reservation_date }}
+                        {{ $reservation->date }}
                     </td>
                     <td class="reservations__data">
-                        {{ \Carbon\Carbon::parse($reservation->reservation_time)->format('H:i') }}
+                        {{ \Carbon\Carbon::parse($reservation->time)->format('H:i') }}
                     </td>
                     <td class="reservations__number">
-                        {{ $reservation->reservation_number }}
+                        {{ $reservation->number }}
                     </td>
                 </tr>
                 @endforeach

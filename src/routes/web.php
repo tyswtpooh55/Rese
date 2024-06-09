@@ -56,7 +56,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/reservation/edit/{id}', [MypageController::class, 'editReservation'])->name('editReservation');
     Route::get('/mypage/visited', [MypageController::class, 'visitedShop'])->name('visitedShop');
     Route::get('/comment/{id}', [MypageController::class, 'comment'])->name('comment');
-    Route::post('/createComment', [MypageController::class, 'createComment'])->name('createComment');
+    Route::post('/createComment', [MypageController::class, 'writeReview'])->name('writeReview');
     Route::get('/reservation/qr/{id}', [MypageController::class, 'qrCode'])->name('reservationQr');
 });
 

@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             MasterDatabaseSeeder::class,
             ReservationsTableSeeder::class,
             FavoritesTableSeeder::class,
-            CommentsTableSeeder::class,
+            ReviewsTableSeeder::class,
         ]);
     }
 }

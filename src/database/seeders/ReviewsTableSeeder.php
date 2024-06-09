@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Comment;
+use App\Models\Review;
 use App\Models\Reservation;
 use Illuminate\Database\Seeder;
 
-class CommentsTableSeeder extends Seeder
+class ReviewsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,14 +16,14 @@ class CommentsTableSeeder extends Seeder
     public function run()
     {
         // 過去のReservationの数をカウント
-        $countPastReservations = Reservation::where('reservation_date', '<', today())->count();
+        $countPastReservations = Reservation::where('date', '<', today())->count();
 
         if ($countPastReservations === 0) {
             return;
         }
 
-        $commentsToCreate = intval($countPastReservations * 0.8);
+        $reviewToCreate = intval($countPastReservations * 0.8);
 
-        Comment::factory()->count($commentsToCreate)->create();
+        Review::factory()->count($reviewToCreate)->create();
     }
 }

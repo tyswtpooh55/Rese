@@ -15,7 +15,7 @@
                 <img src="{{ asset('storage/' . $shop->image_path) }}" alt="image" />
             </div>
             <div class="shop__detail-tag">
-                <p class="shop__detail-tag-area">#{{ $shop->area->area }}</p>
+                <p class="shop__detail-tag-area">#{{ $shop->area->name }}</p>
                 <p class="shop__detail-tag-genre">#{{ $shop->genre->genre }}</p>
             </div>
             <div class="shop__detail-txt">
@@ -35,7 +35,7 @@
                             <label class="edit__form--label">Area</label><br>
                             <select class="edit__form--select" name="area_id">
                                 @foreach ($areas as $area)
-                                <option value="{{ $area->id }}" {{ $shop->area_id == $area->id ? 'selected' : '' }}>{{ $area->area }}</option>
+                                <option value="{{ $area->id }}" {{ $shop->area_id == $area->id ? 'selected' : '' }}>{{ $area->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -43,7 +43,7 @@
                             <label class="edit__form--label">Genre</label><br>
                             <select name="genre_id" class="edit__form--select">
                                 @foreach ($genres as $genre)
-                                <option value="{{ $genre->id }}" {{ $shop->genre_id == $genre->id ? 'selected' : '' }}>{{ $genre->genre }}</option>
+                                <option value="{{ $genre->id }}" {{ $shop->genre_id == $genre->id ? 'selected' : '' }}>{{ $genre->name e}}</option>
                                 @endforeach
                             </select>
                         </div>

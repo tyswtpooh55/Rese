@@ -23,7 +23,7 @@
                         <select class="form__select" name="area_id">
                             <option value="">-- 選択してください --</option>
                             @foreach ($areas as $area)
-                            <option value="{{ $area->id }}">{{ $area->area }}</option>
+                            <option value="{{ $area->id }}">{{ $area->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -37,7 +37,7 @@
                         <select class="form__select" name="genre_id">
                             <option value="">-- 選択してください --</option>
                             @foreach ($genres as $genre)
-                            <option value="{{ $genre->id }}">{{ $genre->genre }}</option>
+                            <option value="{{ $genre->id }}">{{ $genre->name }}</option>
                             @endforeach
                         </select>
                     </div>

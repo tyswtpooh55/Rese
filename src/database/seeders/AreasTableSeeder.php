@@ -15,9 +15,9 @@ class AreasTableSeeder extends Seeder
     public function run()
     {
         $param = [
-            ['area' => '東京都'],
-            ['area' => '大阪府'],
-            ['area' => '福岡県'],
+            ['name' => '東京都'],
+            ['name' => '大阪府'],
+            ['name' => '福岡県'],
         ];
         DB::table('areas')->insert($param);
     }

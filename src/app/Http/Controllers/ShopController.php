@@ -39,7 +39,7 @@ class ShopController extends Controller
         // 検索結果
         $shops = $searchQuery->get()->map(function ($shop) {
             $shop->isFavorited =$shop->favorites->isNotEmpty();
-            $shop->averageRating = $shop->comments->avg('rating') ?? 0;
+            $shop->averageRating = $shop->reviews->avg('rating') ?? 0;
             return $shop;
 
         });
@@ -57,8 +57,8 @@ class ShopController extends Controller
         $shop = Shop::findOrFail($id);
         $shopName = $shop->name;
 
-        $averageRating = $shop->comments()->avg('rating') ?? 0;
-        $countRating = $shop->comments()->count();
+        $averageRating = $shop->reviews()->avg('rating') ?? 0;
+        $countRating = $shop->reviews()->count();
 
         return view('detail', compact(
             'shop',
@@ -71,8 +71,8 @@ class ShopController extends Controller
     public function reviews($id)
     {
         $shop = Shop::findOrFail($id);
-        $reviews = $shop->comments()
-            ->with('reservation:id,reservation_date')
+        $reviews = $shop->reviews()
+            ->with('reservation:id,date')
             ->select('id', 'comment', 'rating', 'reservation_id')
             ->get();
 

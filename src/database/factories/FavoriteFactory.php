@@ -19,7 +19,7 @@ class FavoriteFactory extends Factory
     {
         $userIds = User::whereDoesntHave('roles', function ($query) {
             $query->where('name', 'admin')
-                ->orWhere('name', 'shop_manager');
+                ->orWhere('name', 'manager');
         })->pluck('id')->toArray();
 
         return [

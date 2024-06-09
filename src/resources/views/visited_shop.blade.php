@@ -29,7 +29,7 @@
                         Date
                     </th>
                     <td class="visited-shop__table--data">
-                        {{ $pastReservation->reservation_date }}
+                        {{ $pastReservation->date }}
                     </td>
                 </tr>
                 <tr class="visited-shop__table--row">
@@ -37,7 +37,7 @@
                         Time
                     </th>
                     <td class="visited-shop__table--data">
-                        {{ \Carbon\Carbon::parse($pastReservation->reservation_time)->format   ('H:i') }}
+                        {{ \Carbon\Carbon::parse($pastReservation->time)->format   ('H:i') }}
                     </td>
                 </tr>
                 <tr class="visited-shop__table--row">
@@ -45,7 +45,7 @@
                         Number
                     </th>
                     <td class="visited-shop__table--data">
-                        {{ $pastReservation->reservation_number }}人
+                        {{ $pastReservation->number }}人
                     </td>
                 </tr>
             </table>
