@@ -14,8 +14,8 @@
                 <img src="{{ asset('storage/' . $reservation->shop->image_path) }}" alt="{{ $reservation->shop->name }}" />
             </div>
             <div class="shop__detail-tag">
-                <p class="shop__detail-tag-area">#{{ $reservation->shop->area->area }}</p>
-                <p class="shop__detail-tag-genre">#{{ $reservation->shop->genre->genre }}</p>
+                <p class="shop__detail-tag-area">#{{ $reservation->shop->area->name }}</p>
+                <p class="shop__detail-tag-genre">#{{ $reservation->shop->genre->name }}</p>
             </div>
             <div class="shop__detail-txt">
                 <p>{{ $reservation->shop->detail }}</p>
@@ -38,7 +38,7 @@
                                 Date
                             </th>
                             <td class="comment__data">
-                                {{ $reservation->reservation_date }}
+                                {{ $reservation->date }}
                             </td>
                         </tr>
                         <tr class="comment__row">
@@ -46,7 +46,7 @@
                                 Time
                             </th>
                             <td class="comment__data">
-                                {{ \Carbon\Carbon::parse($reservation->reservation_time)->format('H:i') }}
+                                {{ \Carbon\Carbon::parse($reservation->time)->format('H:i') }}
                             </td>
                         </tr>
                         <tr class="comment__row">
@@ -54,13 +54,13 @@
                                 Number
                             </th>
                             <td class="comment__data">
-                                {{ $reservation->reservation_number }}人
+                                {{ $reservation->number }}人
                             </td>
                         </tr>
                     </table>
                 </div>
                 <div class="comment__form">
-                    <form class="comment__form--form" action="{{ route('createComment', $reservation->id) }}" method="post">
+                    <form class="comment__form--form" action="{{ route('writeReview', $reservation->id) }}" method="post">
                         @csrf
                         <input type="hidden" name="reservation_id" value="{{ $reservation->id }}">
                         <input type="hidden" name="shop_id" value="{{ $reservation->shop_id }}">

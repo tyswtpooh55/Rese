@@ -8,7 +8,6 @@ use App\Models\Genre;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Models\Shop;
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -42,8 +41,8 @@ class ManagerController extends Controller
 
         $shopReservations = Reservation::where('shop_id', $shop->id);
         $thisDateReservations = $shopReservations
-            ->whereDate('reservation_date', $thisDate->toDateString())
-            ->orderBy('reservation_time')
+            ->whereDate('date', $thisDate->toDateString())
+            ->orderBy('time')
             ->get();
 
         return view('manager/view_reservations', compact(

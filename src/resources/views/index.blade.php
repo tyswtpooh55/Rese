@@ -13,13 +13,13 @@
                 <select class="search-form__select" name="area_id" value="{{ request('area') }}" onchange="submit(this.form)">
                     <option selected value="">All area</option>
                     @foreach ($areas as $area)
-                        <option value="{{ $area->id }}" {{ request('area_id') == $area->id ? 'selected' : '' }}>{{ $area->area }}</option>
+                        <option value="{{ $area->id }}" {{ request('area_id') == $area->id ? 'selected' : '' }}>{{ $area->name }}</option>
                     @endforeach
                 </select>
                 <select class="search-form__select" name="genre_id" value="{{ request('genre') }}" onchange="submit(this.form)">
                     <option selected value="">All genre</option>
                     @foreach ($genres as $genre)
-                        <option value="{{ $genre->id }}" {{ request('genre_id') == $genre->id ? 'selected' : '' }}>{{ $genre->genre }}</option>
+                        <option value="{{ $genre->id }}" {{ request('genre_id') == $genre->id ? 'selected' : '' }}>{{ $genre->name }}</option>
                     @endforeach
                 </select>
                 <input class="search-form__input" type="text" name="keyword" placeholder="Search ..." value="{{ request('keyword') }}" onchange="submit(this.form)" />
@@ -38,8 +38,8 @@
                 <div class="card__content">
                     <p class="card__content-ttl">{{ $shop->name }}</p>
                     <div class="card__content-tag">
-                            <p class="card__content-tag-area">#{{ $shop->area->area }}</p>
-                            <p class="card__content-tag-genre">#{{ $shop->genre->genre }}</p>
+                            <p class="card__content-tag-area">#{{ $shop->area->name }}</p>
+                            <p class="card__content-tag-genre">#{{ $shop->genre->name }}</p>
                     </div>
                     <div class="rating--average">
                         <div class="rating-star" style="--rating: {{ $shop->averageRating }};"></div>

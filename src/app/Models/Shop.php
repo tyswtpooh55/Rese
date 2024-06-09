@@ -39,8 +39,8 @@ class Shop extends Model
         return $this->hasMany(Favorite::class, 'shop_id');
     }
 
-    public function comments()
+    public function reviews()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Review::class);
     }
 }

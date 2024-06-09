@@ -28,15 +28,15 @@ class ReservationFactory extends Factory
         //一般ユーザーのID取得
         $userIds = User::whereDoesntHave('roles', function ($query) {
             $query->where('name', 'admin')
-            ->orWhere('name', 'shop_manager');
+            ->orWhere('name', 'manager');
         })->pluck('id')->toArray();
 
         return [
             'user_id' => $this->faker->randomElement($userIds),
             'shop_id' => Shop::inRandomOrder()->first()->id,
-            'reservation_Date' => $this->faker->dateTimeBetween('2024-01-01', '2025-01-01')->format('Y-m-d'),
-            'reservation_time' => $this->faker->randomElement($times),
-            'reservation_number' => $this->faker->numberBetween(1,10),
+            'date' => $this->faker->dateTimeBetween('2024-01-01', '2025-01-01')->format('Y-m-d'),
+            'time' => $this->faker->randomElement($times),
+            'number' => $this->faker->numberBetween(1,10),
         ];
     }
 }

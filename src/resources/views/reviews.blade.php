@@ -15,8 +15,8 @@
                 <img src="{{ asset('storage/' . $shop->image_path) }}" alt="{{ $shop->name }}" />
             </div>
             <div class="shop__detail-tag">
-                <p class="shop__detail-tag-area">#{{ $shop->area->area }}</p>
-                <p class="shop__detail-tag-genre">#{{ $shop->genre->genre }}</p>
+                <p class="shop__detail-tag-area">#{{ $shop->area->name }}</p>
+                <p class="shop__detail-tag-genre">#{{ $shop->genre->name }}</p>
             </div>
             <div class="shop__detail-txt">
                 <p>{{ $shop->detail }}</p>
@@ -50,7 +50,7 @@
                                         {{ $review->comment }}
                                     </p>
                                     @if ($review->reservation)
-                                        <p class="review__reservation-date">来店日: {{ \Carbon\Carbon::parse($review->reservation->reservation_date)->format('Y-m-d') }}</p>
+                                        <p class="review__reservation-date">来店日: {{ \Carbon\Carbon::parse($review->reservation->date)->format('Y-m-d') }}</p>
                                     @else
                                         <p class="review__reservation-date">来店日:不明</p>
                                     @endif

@@ -15,13 +15,14 @@ class ReservationForm extends Component
 {
     public $shop;
     public $shopId;
-    public $reservationDate;
-    public $reservationTime;
-    public $reservationNumber;
+    public $date;
+    public $time;
+    public $number;
     public $today;
     public $oneYearLater;
     public $selectableTimes =[];
     public $selectableNumbers = [];
+    public $isTodaySelectable = true;
 
     public function mount($shop)
     {
@@ -29,16 +30,23 @@ class ReservationForm extends Component
         $this->shop = Shop::find($this->shopId);
 
         // 予約カレンダーの選択範囲
-        $this->today = Carbon::today()->format('Y-m-d');
+        $now = Carbon::now();
+        if ($now->hour >= 23) {
+            $this->isTodaySelectable = false;
+            $this->today = Carbon::tomorrow()->format('Y-m-d'); // 明日の日付を初期値に設定
+        } else {
+            $this->today = Carbon::today()->format('Y-m-d');
+        }
+
         $this->oneYearLater = Carbon::today()->addYear()->format('Y-m-d');
 
         // 予約人数($selectableNumbers)定義
         $this->selectableNumbers = range(1,10);
 
         // 初期化
-        $this->reservationDate = $this->today;
-        $this->reservationTime = null;
-        $this->reservationNumber = 1;
+        $this->date = $this->today;
+        $this->time = null;
+        $this->number = 1;
 
         // 選択可能時間の取得
         $this->updateSelectableTimes();
@@ -47,23 +55,23 @@ class ReservationForm extends Component
     private function updateSelectableTimes()
     {
         //予約可能時間($selectableTimes)定義
-        $openTime = new DateTime('17:00');
-        $lastTime = new DateTime('23:00');
+        $openTime = new DateTime($this->date . '17:00:00');
+        $lastTime = new DateTime($this->date . '23:00:00');
         $reservationInterval = new DateInterval('PT30M');
 
-        $today = $this->today;
-        $reservationDate = $this->reservationDate;
+        $today = (new DateTime())->format('Y-m-d');
+        $date = $this->date;
 
         $this->selectableTimes = [];
 
-        if ($reservationDate === $today) {
-            $oneHourLater = (new DateTime())->add(new DateInterval('PT1H'))->format('H:i');
+        if ($date === $today) {
+            $oneHourLater = (new DateTime())->add(new DateInterval('PT1H'));
         } else {
             $oneHourLater = null;
         }
 
         while ($openTime <= $lastTime) {
-            if ($oneHourLater && $openTime->format('H:i') < $oneHourLater) {
+            if ($oneHourLater && $openTime < $oneHourLater) {
                 // 現時刻から一時間後まではスキップ
             } else {
                 $this->selectableTimes[] = $openTime->format('H:i');
@@ -71,7 +79,7 @@ class ReservationForm extends Component
             $openTime->add($reservationInterval);
         }
 
-        $this->reservationTime = $this->selectableTimes[0] ?? null;
+        $this->time = $this->selectableTimes[0] ?? null;
     }
 
     public function updatedReservationDate()
@@ -97,9 +105,9 @@ class ReservationForm extends Component
         Reservation::create([
             'user_id' => Auth::id(),
             'shop_id' => $this->shop->id,
-            'reservation_date' => $validateData['reservationDate'],
-            'reservation_time' => $validateData['reservationTime'],
-            'reservation_number' => $validateData['reservationNumber'],
+            'date' => $validateData['date'],
+            'time' => $validateData['time'],
+            'number' => $validateData['number'],
         ]);
 
         return redirect()->route('done');

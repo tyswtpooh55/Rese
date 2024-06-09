@@ -34,15 +34,15 @@
                             </tr>
                             <tr class="rese__row">
                                 <th class="rese__label">Date</th>
-                                <td class="rese__data">{{ $reservation->reservation_date }}</td>
+                                <td class="rese__data">{{ $reservation->date }}</td>
                             </tr>
                             <tr class="rese__row">
                                 <th class="rese__label">Time</th>
-                                <td class="rese__data">{{ \Carbon\Carbon::parse($reservation->reservation_time)->format('H:i') }}</td>
+                                <td class="rese__data">{{ \Carbon\Carbon::parse($reservation->time)->format('H:i') }}</td>
                             </tr>
                             <tr class="rese__row">
                                 <th class="rese__label">Number</th>
-                                <td class="rese__data">{{ $reservation->reservation_number }}人</td>
+                                <td class="rese__data">{{ $reservation->number }}人</td>
                             </tr>
                         </table>
                         <div class="rese__edit--btn">
@@ -68,8 +68,8 @@
                         <div class="card__content">
                             <p class="card__content-ttl">{{ $favorite->shop->name }}</p>
                             <div class="card__content-tag">
-                                <p class="card__content-tag-area">#{{ $favorite->shop->area->area }}</p>
-                                <p class="card__content-tag-genre">#{{ $favorite->shop->genre->genre }}</p>
+                                <p class="card__content-tag-area">#{{ $favorite->shop->area->name }}</p>
+                                <p class="card__content-tag-genre">#{{ $favorite->shop->genre->name }}</p>
                             </div>
                             <div class="card__content-btn">
                             <a href="{{ route('shop.detail', ['id' => $favorite->shop->id]) }}" class="card__content-detail--btn">詳しくみる</a>

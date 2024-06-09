@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Favorite;
 use App\Models\Reservation;
+use App\Models\Review;
 use App\Models\Shop;
-use App\Models\Comment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class MypageController extends Controller
 {
@@ -24,10 +23,10 @@ class MypageController extends Controller
             ->get();
 
         $displayReservations = $reservations->filter(function ($reservation) use ($oneHourBefore) {
-            $reservationDateTime = Carbon::parse($reservation->reservation_date . ' ' . $reservation->reservation_time);
+            $reservationDateTime = Carbon::parse($reservation->date . ' ' . $reservation->time);
             return $reservationDateTime->greaterThan($oneHourBefore);
         })->sortBy(function ($reservation) {
-            return Carbon::parse($reservation->reservation_date . ' ' . $reservation->reservation_time);
+            return Carbon::parse($reservation->date . ' ' . $reservation->time);
         });
 
 
@@ -74,10 +73,10 @@ class MypageController extends Controller
             ->get();
 
         $pastReservations = $reservations->filter(function ($reservation) use ($oneHourBefore) {
-            $reservationDateTime = Carbon::parse($reservation->reservation_date . ' ' . $reservation->reservation_time);
+            $reservationDateTime = Carbon::parse($reservation->date . ' ' . $reservation->time);
             return $reservationDateTime->lessThan($oneHourBefore);
         })->sortBy(function ($reservation) {
-            return Carbon::parse($reservation->reservation_date . ' ' . $reservation->reservation_time);
+            return Carbon::parse($reservation->date . ' ' . $reservation->time);
         });
 
 
@@ -95,10 +94,10 @@ class MypageController extends Controller
         ));
     }
 
-    public function createComment(Request $request)
+    public function writeReview(Request $request)
     {
         $reservation = Reservation::find($request->input('reservation_id'));
-        Comment::create([
+        Review::create([
             'reservation_id' =>  $request->input('reservation_id'),
             'shop_id' => $reservation->shop_id,
             'rating' => $request->input('rating'),
