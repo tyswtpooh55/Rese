@@ -34,7 +34,17 @@
         </div>
         <div class="detail__rese">
             @if (Auth::check())
-                @livewire('reservation-form', ['shop' => $shop])
+            <div class="rese__box">
+                <h3 class="rese__ttl">予約</h3>
+                <div class="rese-form">
+                    <form action="{{ route('createReservation') }}" class="rese-form__form" method="POST">
+                        @csrf
+                        @livewire('reservation-form', ['shop' => $shop])
+                        <input type="hidden" name="shop_id" value={{ $shop->id }}>
+                        <input class="form__btn--rese" type="submit" name="rese" value="予約する" />
+                    </form>
+                </div>
+            </div>
             @else
                 <div class="rese__login">
                     <p class="login__message">予約にはログインが必要です</p>

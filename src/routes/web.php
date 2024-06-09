@@ -49,11 +49,10 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage.index');
     Route::post('/favorite/create/{id}', [FavoriteController::class, 'createFavorite'])->name('createFavorite');
     Route::post('/favorite/delete/{id}', [FavoriteController::class, 'deleteFavorite'])->name('deleteFavorite');
-    Route::get('/done', function () {
-        return view('done');
-    })->name('done');
+    Route::post('/reservation/create', [ShopController::class, 'createReservation'])->name('createReservation');
     Route::post('/reservation/delete/{id}', [MypageController::class, 'deleteReservation'])->name('deleteReservation');
     Route::get('/reservation/edit/{id}', [MypageController::class, 'editReservation'])->name('editReservation');
+    Route::post('/reservation/update/{id}', [MypageController::class, 'updateReservation'])->name('updateReservation');
     Route::get('/mypage/visited', [MypageController::class, 'visitedShop'])->name('visitedShop');
     Route::get('/comment/{id}', [MypageController::class, 'comment'])->name('comment');
     Route::post('/createComment', [MypageController::class, 'writeReview'])->name('writeReview');

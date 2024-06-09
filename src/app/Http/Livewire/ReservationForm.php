@@ -2,10 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
 use App\Models\Reservation;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\ReservationRequest;
+use Livewire\Component;
 use App\Models\Shop;
 use Carbon\Carbon;
 use DateInterval;
@@ -15,38 +13,48 @@ class ReservationForm extends Component
 {
     public $shop;
     public $shopId;
+    public $reservationId;
     public $date;
     public $time;
     public $number;
-    public $today;
-    public $oneYearLater;
+    public $firstAvailableDate;
+    public $lastAvailableDate;
     public $selectableTimes =[];
     public $selectableNumbers = [];
-    public $isTodaySelectable = true;
 
-    public function mount($shop)
+    public function mount($shop, $reservationId = null)
     {
         $this->shopId = $shop->id;
         $this->shop = Shop::find($this->shopId);
 
+        $this->reservationId = $reservationId;
+
         // 予約カレンダーの選択範囲
         $now = Carbon::now();
         if ($now->hour >= 23) {
-            $this->isTodaySelectable = false;
-            $this->today = Carbon::tomorrow()->format('Y-m-d'); // 明日の日付を初期値に設定
+            $this->firstAvailableDate = Carbon::tomorrow()->format('Y-m-d'); // 明日の日付を初期値に設定
         } else {
-            $this->today = Carbon::today()->format('Y-m-d');
+            $this->firstAvailableDate = Carbon::today()->format('Y-m-d');
         }
 
-        $this->oneYearLater = Carbon::today()->addYear()->format('Y-m-d');
+        $this->lastAvailableDate = Carbon::today()->addYear()->format('Y-m-d');
 
         // 予約人数($selectableNumbers)定義
         $this->selectableNumbers = range(1,10);
 
-        // 初期化
-        $this->date = $this->today;
-        $this->time = null;
-        $this->number = 1;
+        if ($this->reservationId) {
+            $reservation = Reservation::find($this->reservationId);
+            if ($reservation) {
+                $this->date = $reservation->date;
+                $this->time = $reservation->time;
+                $this->number = $reservation->number;
+            }
+        } else {
+            // 初期化
+            $this->date = $this->firstAvailableDate;
+            $this->time = null;
+            $this->number = 1;
+        }
 
         // 選択可能時間の取得
         $this->updateSelectableTimes();
@@ -82,43 +90,17 @@ class ReservationForm extends Component
         $this->time = $this->selectableTimes[0] ?? null;
     }
 
-    public function updatedReservationDate()
+    public function updatedDate()
     {
         $this->updateSelectableTimes();
-    }
-
-
-    protected function rules()
-    {
-        return (new ReservationRequest())->rules();
-    }
-
-    protected function messages()
-    {
-        return (new ReservationRequest())->messages();
-    }
-
-    public function createReservation()
-    {
-        $validateData = $this->validate();
-
-        Reservation::create([
-            'user_id' => Auth::id(),
-            'shop_id' => $this->shop->id,
-            'date' => $validateData['date'],
-            'time' => $validateData['time'],
-            'number' => $validateData['number'],
-        ]);
-
-        return redirect()->route('done');
     }
 
     public function render()
     {
         return view('livewire.reservation-form', [
             'shop' => $this->shop,
-            'today' => $this->today,
-            'oneYearLater' => $this->oneYearLater,
+            'firstAvailableDate' => $this->firstAvailableDate,
+            'lastAvailableDate' => $this->lastAvailableDate,
             'selectableTimes' => $this->selectableTimes,
             'selectableNumbers' => $this->selectableNumbers,
         ]);

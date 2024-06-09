@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReservationRequest;
 use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Area;
@@ -11,11 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth')->only(['createReservation']);
-    }
-
     public function index(Request $request)
     {
         // 検索
@@ -66,6 +62,19 @@ class ShopController extends Controller
             'averageRating',
             'countRating',
         ));
+    }
+
+    public function createReservation(ReservationRequest $request)
+    {
+        Reservation::create([
+            'user_id' => Auth::id(),
+            'shop_id' => $request->shop_id,
+            'date' => $request->date,
+            'time' => $request->time,
+            'number' => $request->number,
+        ]);
+
+        return view('done');
     }
 
     public function reviews($id)
