@@ -23,15 +23,22 @@ class ManagerController extends Controller
         $this->middleware('permission:check reservations')->only('viewReservations');
     }*/
 
+    public function selectShop($action)
+    {
+        $user = Auth::user();
+        $shops = $user->shops;
+
+        return view('manager/select_shop', [
+            'shops' => $shops,
+            'action' => $action,
+        ]);
+    }
+
     public function viewReservations(Request $request, Shop $shop)
     {
         $thisDate = $request->query('date') ? new Carbon($request->query('date')) : Carbon::today();
         $prevDate = $thisDate->copy()->subDay();
         $nextDate = $thisDate->copy()->addDay();
-
-        //担当しているすべての店舗を取得
-        $manager = Auth::user();
-        $managedShops = $manager->shops;
 
         $shopReservations = Reservation::where('shop_id', $shop->id);
         $thisDateReservations = $shopReservations
@@ -44,22 +51,16 @@ class ManagerController extends Controller
             'thisDate',
             'prevDate',
             'nextDate',
-            'managedShops',
             'thisDateReservations'
         ));
     }
 
     public function editDetail(Shop $shop)
     {
-        //担当しているすべての店舗を取得
-        $manager = Auth::user();
-        $managedShops = $manager->shops;
-
         $areas = Area::all();
         $genres = Genre::all();
 
         return view('manager/edit_shop_detail', compact(
-            'managedShops',
             'shop',
             'areas',
             'genres',

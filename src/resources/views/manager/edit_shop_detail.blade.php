@@ -4,23 +4,6 @@
     <link rel="stylesheet" href="{{ asset('css/manager/edit_shop_detail.css') }}">
 @endsection
 
-@section('header')
-    <div class="manager__header">
-        <nav class="manager__header--nav">
-            <ul class="manager__header--ul">
-                @foreach ($managedShops as $managedShop)
-                    <li class="manager__header--list">
-                        <a href="{{ route('manager.editDetail', ['shop' => $managedShop->id]) }}">{{ $managedShop->name }}</a>
-                    </li>
-                @endforeach
-                <li class="manager__header--list">
-                    <a href="{{ route('manager.addShop') }}">&lt;Add Shop&gt;</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-@endsection
-
 @section('content')
     <div class="detail-content">
         <div class="detail__shop">

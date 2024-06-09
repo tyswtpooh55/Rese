@@ -5,18 +5,18 @@ body {
 
 .header {
     display: flex;
-    width: 90%;
+    width: 80%;
     justify-content: space-between;
     padding: 10px 70px;
     align-items: center;
     margin: 0 auto;
 }
 
-.hamburger-icon {
+.menu-icon {
     display: flex;
 }
 
-.hamburger__btn {
+.menu__btn {
     display: flex;
     margin-top: 30px;
     margin-left: 50px;
@@ -31,9 +31,9 @@ body {
     cursor: pointer;
 }
 
-.hamburger__btn span,
-.hamburger__btn span::before,
-.hamburger__btn span::after {
+.menu__btn span,
+.menu__btn span::before,
+.menu__btn span::after {
     content: '';
     display: block;
     height: 1px;
@@ -41,41 +41,41 @@ body {
     position: absolute;
 }
 
-.hamburger__btn span {
+.menu__btn span {
     width: 20px;
 }
 
-.hamburger__btn span::before {
+.menu__btn span::before {
     width: 10px;
     bottom: 6px;
 }
 
-.hamburger__btn span::after {
+.menu__btn span::after {
     width: 5px;
     top: 6px;
 }
 
-#hamburger__input:checked ~ .hamburger__btn span {
+#menu__input:checked ~ .menu__btn span {
     background-color: rgba(255, 255, 255, 0);
 }
 
-#hamburger__input:checked ~ .hamburger__btn span::before {
+#menu__input:checked ~ .menu__btn span::before {
     bottom: 0;
     width: 20px;
     transform: rotate(45deg);
 }
 
-#hamburger__input:checked ~ .hamburger__btn span::after {
+#menu__input:checked ~ .menu__btn span::after {
     top: 0;
     width: 20px;
     transform: rotate(-45deg);
 }
 
-.hamburger__input {
+.menu__input {
     display: none;
 }
 
-.hamburger-menu {
+.menu {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -86,15 +86,15 @@ body {
     text-align: center;
 }
 
-.hamburger-menu ul {
+.menu ul {
     padding: 150px 0;
 }
 
-.hamburger-menu ul li {
+.menu ul li {
     list-style: none;
 }
 
-.hamburger-menu ul li button {
+.menu ul li button {
     font-size: 32px;
     box-sizing: border-box;
     color: #305dff;
@@ -114,7 +114,7 @@ body {
     margin-left: 15px;
 }
 
-#hamburger__input:checked ~ .hamburger-menu {
+#menu__input:checked ~ .menu {
     left: 0;
 }
 
@@ -137,4 +137,14 @@ body {
     color: #305dff;
     margin-right: 20px;
     cursor: pointer;
+}
+
+/* QRcode*/
+.qr-content {
+    margin: 20px;
+    text-align: center;
+}
+
+.qr__txt {
+    font-size: 16px;
 }

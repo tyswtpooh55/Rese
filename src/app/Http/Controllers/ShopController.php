@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Area;
 use App\Models\Genre;
+use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
@@ -76,5 +77,14 @@ class ShopController extends Controller
             ->get();
 
         return view('reviews', compact('shop', 'reviews'));
+    }
+
+    public function reservationData($id)
+    {
+        $reservation = Reservation::findOrFail($id);
+
+        return view("reservation_data", compact(
+            'reservation'
+        ));
     }
 }

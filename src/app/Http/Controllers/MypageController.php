@@ -9,6 +9,7 @@ use App\Models\Comment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class MypageController extends Controller
 {
@@ -16,6 +17,7 @@ class MypageController extends Controller
     {
         $user = Auth::user();
         $oneHourBefore = Carbon::now()->subHour();
+        $oneHourAfter = Carbon::now()->addHour();
 
         $reservations = Reservation::where('user_id', $user->id)
             ->with('shop')
@@ -27,6 +29,7 @@ class MypageController extends Controller
         })->sortBy(function ($reservation) {
             return Carbon::parse($reservation->reservation_date . ' ' . $reservation->reservation_time);
         });
+
 
         $favorites = Favorite::where('user_id', $user->id)
             ->with('shop')
@@ -103,5 +106,14 @@ class MypageController extends Controller
         ]);
 
         return redirect()->route('mypage.index');
+    }
+
+    public function qrCode($id)
+    {
+        $reservation = Reservation::findOrFail($id);
+
+        return view('qr_code', compact(
+            'reservation'
+        ));
     }
 }

@@ -4,20 +4,6 @@
     <link rel="stylesheet" href="{{ asset('css/manager/view_reservations.css') }}">
 @endsection
 
-@section('header')
-    <div class="manager__header">
-        <nav class="manager__header--nav">
-            <ul class="manager__header--ul">
-                @foreach ($managedShops as $managedShop)
-                <li class="manager__header--list">
-                    <a href="{{ route('manager.viewReservations', ['shop' => $managedShop->id]) }}">{{ $managedShop->name }}</a>
-                </li>
-                @endforeach
-            </ul>
-        </nav>
-    </div>
-@endsection
-
 @section('content')
     <div class="view-reservations__content">
         <div class="reservations__heading">

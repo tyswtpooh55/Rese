@@ -48,6 +48,9 @@
                         <div class="rese__edit--btn">
                             <a class="rese__edit--btn-link" href="{{ route('editReservation', $reservation->id) }}">変更する</a>
                         </div>
+                        <div class="rese__qr--btn">
+                            <a href="{{ route('reservationQr', $reservation->id) }}" class="rese__qr--btn-link">QRコード</a>
+                        </div>
                     </div>
                     @endforeach
                 </div>
