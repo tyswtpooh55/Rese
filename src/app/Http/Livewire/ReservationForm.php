@@ -31,7 +31,7 @@ class ReservationForm extends Component
 
         // 予約カレンダーの選択範囲
         $now = Carbon::now();
-        if ($now->hour >= 23) {
+        if ($now->format('H:i') >= "23:00") {
             $this->firstAvailableDate = Carbon::tomorrow()->format('Y-m-d'); // 明日の日付を初期値に設定
         } else {
             $this->firstAvailableDate = Carbon::today()->format('Y-m-d');
@@ -79,7 +79,7 @@ class ReservationForm extends Component
         }
 
         while ($openTime <= $lastTime) {
-            if ($oneHourLater && $openTime < $oneHourLater) {
+            if ($oneHourLater && $openTime <= $oneHourLater) {
                 // 現時刻から一時間後まではスキップ
             } else {
                 $this->selectableTimes[] = $openTime->format('H:i');

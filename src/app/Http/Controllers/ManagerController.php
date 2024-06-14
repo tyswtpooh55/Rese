@@ -58,17 +58,29 @@ class ManagerController extends Controller
     {
         $areas = Area::all();
         $genres = Genre::all();
+        $storageImages = Storage::files('public/images');
 
         return view('manager/edit_shop_detail', compact(
             'shop',
             'areas',
             'genres',
+            'storageImages',
         ));
     }
 
-    public function updateDetail(Request $request, Shop $shop)
+    public function updateDetail(ShopRequest $request, Shop $shop)
     {
         $shop = $request->shop;
+
+        if ($request->hasFile('upload_image')) {
+            $path = $request->file('upload_image')->store('public/images');
+            $shop->image_path = str_replace('public', '', $path);
+        } else {
+            $imagePath = $request->input('image_path');
+            if ($imagePath) {
+                $shop->image_path = str_replace('public', '', $imagePath);
+            }
+        }
 
         $shop->name = $request->input('name');
         $shop->area_id = $request->input('area_id');

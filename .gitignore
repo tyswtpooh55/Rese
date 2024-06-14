@@ -18,3 +18,5 @@
 /docker/mysql/data
 er.drawio.png
 wget-log
+/src/resources/views/payments
+/src/app/Http/Controllers/PaymentsController.php

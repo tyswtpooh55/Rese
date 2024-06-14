@@ -122,7 +122,8 @@
 
 /*お気に入り店舗*/
 .mypage__fav {
-    width: 45%;
+    min-width: 600px;
+    width: 50%;
 }
 
 .fav__ttl {

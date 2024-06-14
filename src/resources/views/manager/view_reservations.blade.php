@@ -51,7 +51,7 @@
                         {{ \Carbon\Carbon::parse($reservation->time)->format('H:i') }}
                     </td>
                     <td class="reservations__number">
-                        {{ $reservation->number }}
+                        {{ $reservation->number }}人
                     </td>
                 </tr>
                 @endforeach

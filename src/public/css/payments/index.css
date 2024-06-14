@@ -1,0 +1,108 @@
+.payment__content {
+    width: 40%;
+    min-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.payment__heading h2 {
+    font-size: 24px;
+}
+
+.payment__form {
+    background: #fff;
+    padding: 40px 20px;
+    margin: 10px auto;
+    border-radius: 5px;
+    box-shadow: 5px 5px 3px #a7a7a7;
+    width: 300px;
+    text-align: center;
+}
+
+.form-group {
+    margin: 10px;
+    position: relative;
+}
+
+.form-group input {
+    width: 90%;
+    padding: 10px;
+    padding-left: 40px;
+    border: none;
+    border-radius: 5px;
+    background: #c4d0ff;
+}
+
+.form__expiry {
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.form__expiry input {
+    width: 45%;
+}
+
+.form-group__save {
+    margin: 10px;
+}
+
+.form__btn--btn {
+    background: #305dff;
+    color: #fff;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 90%;
+    font-size: 16px;
+}
+
+/* アイコン*/
+.inp__amount,
+.inp__card,
+inp__expiry,
+inp__cvc {
+    position: relative;
+}
+
+.inp__amount::before {
+    content: "";
+    position: absolute;
+    background: url(/images/yen.png) no-repeat;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    transform: translate(8px, 8px);
+}
+
+.inp__card::before {
+    content: "";
+    position: absolute;
+    background: url(/images/card.png) no-repeat;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    transform: translate(8px, 8px);
+}
+
+.inp__expiry::before {
+    content: "";
+    position: absolute;
+    background: url(/images/expiry.png) no-repeat;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    transform: translate(8px, 8px);
+}
+
+.inp__cvc::before {
+    content: "";
+    position: absolute;
+    background: url(/images/cvc.png) no-repeat;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    transform: translate(8px, 8px);
+}
