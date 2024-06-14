@@ -1,13 +1,14 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\MypageController;
+use App\Http\Controllers\PaymentsController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Laravel\Cashier\Http\Controllers\PaymentController;
 use Spatie\Permission\Contracts\Role;
 
 /*
@@ -47,8 +48,6 @@ Route::get('/email/verification-notification', function (Request $request) {
 // 会員・ログイン済み
 Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage.index');
-    Route::post('/favorite/create/{id}', [FavoriteController::class, 'createFavorite'])->name('createFavorite');
-    Route::post('/favorite/delete/{id}', [FavoriteController::class, 'deleteFavorite'])->name('deleteFavorite');
     Route::post('/reservation/create', [ShopController::class, 'createReservation'])->name('createReservation');
     Route::post('/reservation/delete/{id}', [MypageController::class, 'deleteReservation'])->name('deleteReservation');
     Route::get('/reservation/edit/{id}', [MypageController::class, 'editReservation'])->name('editReservation');
@@ -78,4 +77,11 @@ Route::prefix('manager')->name('manager.')->middleware(['auth', 'role:manager'])
         Route::get('/detail/{shop}', [ManagerController::class, 'editDetail'])->name('editDetail');
         Route::post('/update/{shop}', [ManagerController::class, 'updateDetail'])->name('updateDetail');
     });
+});
+
+// Stripe支払いルートグループ
+Route::prefix('payments')->name('payments.')->group(function () {
+    Route::get('/', [PaymentsController::class, 'index'])->name('index');
+    Route::post('/', [PaymentsController::class, 'payment'])->name('payment');
+    Route::get('done',[PaymentsController::class, 'complete'])->name('complete');
 });

@@ -17,7 +17,6 @@ class MypageController extends Controller
     {
         $user = Auth::user();
         $oneHourBefore = Carbon::now()->subHour();
-        $oneHourAfter = Carbon::now()->addHour();
 
         $reservations = Reservation::where('user_id', $user->id)
             ->with('shop')
