@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="detail-content">
+    <div class="content detail-content">
         <div class="detail__shop">
             <div class="shop__ttl">
                 <a href="/" class="shop__ttl--btn">&lt;</a>
@@ -32,7 +32,7 @@
                 </div>
             </div>
         </div>
-        <div class="detail__rese">
+        <div class="rese">
             @if (Auth::check())
             <div class="rese__box">
                 <h3 class="rese__ttl">予約</h3>

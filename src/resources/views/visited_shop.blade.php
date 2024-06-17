@@ -5,13 +5,13 @@
 @endsection
 
 @section('content')
-<div class="visited-shop-content">
+<div class="content visited-shop-content">
     <div class="visited-shop__heading">
         <h3>ご来店履歴</h3>
     </div>
     <div class="visited-shop__wrap">
         @foreach ($pastReservations as $pastReservation)
-        <div class="visited-shop__box">
+        <div class="visited-shop__card">
             <div class="visited-shop__ttl">
                 <p>履歴{{ $loop->iteration }}</p>
             </div>

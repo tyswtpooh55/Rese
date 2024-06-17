@@ -1,13 +1,13 @@
 .managers-content {
-    width: 90%;
-    margin: 10px auto;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 /* 店舗責任者一覧*/
 .managers-list__box {
     width: 45%;
+    min-width: 350px;
     background: #fff;
     height: 600px;
     overflow-y: auto;
@@ -52,6 +52,7 @@
 
 .create-manager__box {
     width: 45%;
+    min-width: 350px;
 }
 
 .create-manager__form {

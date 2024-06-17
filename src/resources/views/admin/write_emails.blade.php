@@ -5,18 +5,19 @@
 @endsection
 
 @section('content')
-<div class="alert">
-                @if (session('success'))
-                    <p class="alert-success">{{ session('success') }}</p>
-                @endif
-                @if ($errors->any())
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li class="alert-error">{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                @endif
-            </div>
+<div class="content">
+    <div class="alert">
+        @if (session('success'))
+            <p class="alert-success">{{ session('success') }}</p>
+        @endif
+        @if ($errors->any())
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li class="alert-error">{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
+    </div>
     <form action="{{ route('admin.sendEmail') }}" method="POST">
         @csrf
         <div class="email-content">
@@ -26,16 +27,12 @@
                 </div>
                 <div class="select-recipient__box">
                     <input class="recipient__all--inp" type="checkbox" name="recipients[]" value="all">
-                    <label class="recipient__all--label">
-                        All Customers
-                    </label>
+                    <label class="recipient__all--label">All Customers</label>
                     <ul class="recipient__list">
                         @foreach ($customers as $customer)
                         <li class="recipient__list--list">
                             <input type="checkbox" name="recipients[]" value="{{ $customer->id }}">
-                            <label class="recipient__list--label">
-                                {{ $customer->name }}
-                            </label>
+                            <label class="recipient__list--label">{{ $customer->name }}</label>
                         </li>
                         @endforeach
                     </ul>
@@ -56,6 +53,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
+</div>
 @endsection

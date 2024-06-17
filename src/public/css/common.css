@@ -5,13 +5,16 @@ body {
 
 .header {
     display: flex;
-    width: 80%;
+    width: 85%;
+    max-width: 1230px;
     justify-content: space-between;
-    padding: 10px 70px;
+    padding: 10px 0;
     align-items: center;
     margin: 0 auto;
+    flex-wrap: wrap;
 }
 
+/*ハンバーガーメニューボタン*/
 .menu-icon {
     display: flex;
 }
@@ -19,7 +22,6 @@ body {
 .menu__btn {
     display: flex;
     margin-top: 30px;
-    margin-left: 50px;
     height: 40px;
     width: 40px;
     justify-content: center;
@@ -118,6 +120,12 @@ body {
     left: 0;
 }
 
+.content {
+    width: 85%;
+    margin: 10px auto 100px auto;
+    max-width: 1240px;
+}
+
 .error {
     color: #f08080;
     font-size: 12px;
@@ -147,4 +155,8 @@ body {
 
 .qr__txt {
     font-size: 16px;
+}
+
+@media screen and (max-width:768px) {
+
 }

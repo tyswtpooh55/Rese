@@ -56,7 +56,7 @@ class MypageController extends Controller
 
         $shopName = $shop->name;
 
-        return view('edit', compact(
+        return view('edit_reservation', compact(
             'shop',
             'shopName',
             'reservation',

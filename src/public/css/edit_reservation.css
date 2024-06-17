@@ -1,13 +1,13 @@
 .detail-content {
-    width: 90%;
-    margin: 10px auto;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 /*店舗詳細*/
 .detail__shop {
     width: 45%;
+    min-width: 350px;
 }
 
 .shop__ttl {
@@ -58,6 +58,7 @@
 /*予約変更*/
 .rese__edit {
     width: 45%;
+    min-width: 350px;
 }
 
 .rese__box {

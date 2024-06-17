@@ -1,5 +1,5 @@
 <div>
-    <div class="shop-content">
+    <div class="content shop-content">
         @forelse ($shops as $shop)
         <div class="shop-card">
             <div class="card__img">
@@ -8,13 +8,13 @@
             <div class="card__content">
                 <p class="card__content-ttl">{{ $shop->name }}</p>
                 <div class="card__content-tag">
-                    <p class="card__content-tag-area">#{{ $shop->area->name }}</p>
-                    <p class="card__content-tag-genre">#{{ $shop->genre->name }}</p>
+                    <p class="card__content-tag--area">#{{ $shop->area->name }}</p>
+                    <p class="card__content-tag--genre">#{{ $shop->genre->name }}</p>
                 </div>
                 <div class="rating--average">
                     <div class="rating-star" style="--rating: {{ $shop->averageRating }};"></div>
                 </div>
-                <div class="card__content--btn">
+                <div class="card__content-btn">
                     <a href="{{ route('shop.detail', ['id' => $shop->id]) }}" class="card__content-detail--btn">詳しくみる</a>
                     @if (Auth::check())
                     <button class="card__content-favorite--btn" wire:click='toggleFavorite({{ $shop->id }})'>
@@ -26,7 +26,7 @@
         </div>
         @empty
         <div class="no-shop">
-            <p>該当店舗がありません。</p>
+            <p>該当店舗がありません</p>
         </div>
         @endforelse
     </div>

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="detail-content">
+    <div class="content detail-content">
         <div class="detail__shop">
             <div class="shop__ttl">
                 <h3 class="shop__ttl--txt">{{ $reservation->shop->name }}</h3>

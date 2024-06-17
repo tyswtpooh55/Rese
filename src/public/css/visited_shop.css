@@ -1,21 +1,17 @@
-.visited-shop-content{
-    width: 80%;
-}
-
 .visited-shop__heading {
     font-size: 24px;
     text-align: center;
 }
 
 .visited-shop__wrap {
-    display: flex;
     margin: 10px auto;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 5px;
 }
 
-.visited-shop__box {
-    width: 450px;
+.visited-shop__card {
+    width: 350px;
     border-radius: 5px;
     box-shadow: 5px 5px 3px #a7a7a7;
     background-color: #305dff;

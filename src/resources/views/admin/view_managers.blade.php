@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="managers-content">
+    <div class="content managers-content">
         <div class="managers-list__box">
             <table class="managers-list__table">
                 <tr class="managers-list__row">
