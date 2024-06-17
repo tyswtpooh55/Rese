@@ -1,13 +1,13 @@
-.detail-content {
-    width: 90%;
-    margin: 30px auto;
+.review-content {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 /*店舗詳細*/
 .detail__shop {
     width: 45%;
+    min-width: 350px;
 }
 
 .shop__ttl {
@@ -57,6 +57,7 @@
 /*口コミ*/
 .review__content {
     width: 45%;
+    min-width: 350px;
 }
 
 .review__box {

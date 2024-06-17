@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="select__content">
+<div class="content select__content">
     <div class="select__heading">
         <h2>Select Shop</h2>
     </div>

@@ -1,11 +1,11 @@
 @extends('layouts/app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/edit.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/edit_reservation.css') }}">
 @endsection
 
 @section('content')
-    <div class="detail-content">
+    <div class="content detail-content">
         <div class="detail__shop">
             <div class="shop__ttl">
                 <a href="/mypage" class="shop__ttl--btn">&lt;</a>

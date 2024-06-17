@@ -9,7 +9,6 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Cashier\Http\Controllers\PaymentController;
-use Spatie\Permission\Contracts\Role;
 
 /*
 |--------------------------------------------------------------------------

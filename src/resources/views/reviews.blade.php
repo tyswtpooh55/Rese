@@ -5,10 +5,10 @@
 @endsection
 
 @section('content')
-    <div class="detail-content">
+    <div class="content review-content">
         <div class="detail__shop">
             <div class="shop__ttl">
-                <a href="/" class="shop__ttl--btn">&lt;</a>
+                <a href="{{ route('shop.detail', ['id' => $shop->id]) }}" class="shop__ttl--btn">&lt;</a>
                 <h3 class="shop__ttl--txt">{{ $shop->name }}</h3>
             </div>
             <div class="shop__img">

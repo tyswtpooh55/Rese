@@ -1,7 +1,3 @@
-.mypage {
-    width: 80%;
-    margin: 10px auto;
-}
 
 .mypage__heading {
     font-size: 32px;
@@ -17,7 +13,8 @@
 
 /*予約状況*/
 .mypage__rese {
-    width: 45%;
+    width: 35%;
+    min-width: 350px;
 }
 
 .rese__heading {
@@ -122,8 +119,8 @@
 
 /*お気に入り店舗*/
 .mypage__fav {
-    min-width: 600px;
-    width: 50%;
+    min-width: 350px;
+    width: 55%;
 }
 
 .fav__ttl {
@@ -133,14 +130,14 @@
 .fav-wrap {
     width: 100%;
     margin: 10px auto;
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 5px;
 }
 
 .fav-card {
     width: 300px;
-    margin: 20px 60px 20px 0;
+    margin: 20px auto;
     border-radius: 5px;
     box-shadow: 5px 5px 3px #a7a7a7;
 }

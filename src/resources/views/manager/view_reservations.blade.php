@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="view-reservations__content">
+    <div class="content view-reservations__content">
         <div class="reservations__heading">
             <div class="reservations__heading--ttl">
                 <h2>{{ $shop->name }}</h2>

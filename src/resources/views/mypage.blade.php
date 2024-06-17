@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="mypage">
+    <div class="content">
         <h2 class="mypage__heading">{{ $user->name }}さん</h2>
         <div class="mypage__content">
             <div class="mypage__rese">

@@ -1,10 +1,8 @@
 .email-content {
-    width: 80%;
-    margin: 20px auto 100px auto;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
-
 
 /* 送信先選択*/
 .select-recipient-content {

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="main-content">
+    <div class="content add-content">
             <div class="add-shop__form">
                 <form action="{{ route('manager.createShop') }}" enctype="multipart/form-data" method="POST">
                     @csrf
