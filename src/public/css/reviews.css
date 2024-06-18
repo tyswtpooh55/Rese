@@ -7,7 +7,6 @@
 /*店舗詳細*/
 .detail__shop {
     width: 45%;
-    min-width: 350px;
 }
 
 .shop__ttl {
@@ -57,7 +56,6 @@
 /*口コミ*/
 .review__content {
     width: 45%;
-    min-width: 350px;
 }
 
 .review__box {
@@ -125,4 +123,15 @@
     font-size: 12px;
     color: #a7a7a7;
     text-align: end;
+}
+
+@media screen and (max-width: 768px) {
+    .detail__shop {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .review__content {
+        width: 100%;
+    }
 }

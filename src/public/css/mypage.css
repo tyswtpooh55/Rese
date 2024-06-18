@@ -1,4 +1,3 @@
-
 .mypage__heading {
     font-size: 32px;
     font-weight: bold;
@@ -115,12 +114,10 @@
     cursor: pointer;
 }
 
-
-
 /*お気に入り店舗*/
 .mypage__fav {
-    min-width: 350px;
     width: 55%;
+    min-width: 400px;
 }
 
 .fav__ttl {
@@ -129,7 +126,6 @@
 
 .fav-wrap {
     width: 100%;
-    margin: 10px auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 5px;
@@ -197,4 +193,25 @@
 .favorite-icon {
     width: 35px;
     height: 35px;
+}
+
+@media screen and (max-width:768px) {
+    .mypage__rese {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .rese__heading {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .rese-wrap {
+        display: grid;
+        justify-content: center;
+    }
+
+    .mypage__fav {
+        width: 100%;
+    }
 }

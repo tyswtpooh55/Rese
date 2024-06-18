@@ -52,6 +52,7 @@
     margin-left: 10px;
 }
 
+/*メール作成*/
 .writing-content {
     width: 45%;
 }
@@ -128,4 +129,19 @@
 .alert-error {
     list-style: none;
     text-decoration: underline 3px dotted #f08080;
+}
+
+@media screen and (max-width: 768px) {
+    .select-recipient-content {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .writing-content {
+        width: 100%;
+    }
+
+    .email-box {
+        margin: 0 auto;
+    }
 }

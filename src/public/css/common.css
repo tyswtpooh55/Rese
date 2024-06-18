@@ -132,21 +132,6 @@ body {
     margin: 0 30px;
 }
 
-/*manager page header*/
-.manager__header--ul {
-    display: flex;
-}
-
-.manager__header--nav a {
-    list-style: none;
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: bold;
-    color: #305dff;
-    margin-right: 20px;
-    cursor: pointer;
-}
-
 /* QRcode*/
 .qr-content {
     margin: 20px;
@@ -155,8 +140,4 @@ body {
 
 .qr__txt {
     font-size: 16px;
-}
-
-@media screen and (max-width:768px) {
-
 }

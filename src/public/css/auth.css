@@ -1,7 +1,6 @@
 .auth-box {
     margin: 100px auto;
     width: 400px;
-    height: auto;
     border-radius: 5px;
     background-color: #fff;
     box-shadow: 5px 5px 3px #a7a7a7;
@@ -96,4 +95,11 @@
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .auth-box {
+        width: 100%;
+        max-width: 400px;
+    }
 }
