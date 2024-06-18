@@ -128,3 +128,14 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+@media screen and (max-width: 768px){
+    .detail__shop {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .rese__edit {
+        width: 100%;
+    }
+}

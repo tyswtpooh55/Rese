@@ -7,7 +7,6 @@
 /*店舗詳細*/
 .detail__shop {
     width: 45%;
-    min-width: 350px;
 }
 
 .shop__ttl {
@@ -43,7 +42,6 @@
 /*コメント*/
 .comment-box {
     width: 45%;
-    min-width: 350px;
 }
 
 .comment-box__content {
@@ -136,4 +134,15 @@
 
 .form__rating label:hover ~ label {
     color: #f5b301;
+}
+
+@media screen and (max-width: 768px) {
+    .detail__shop {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .comment-box {
+        width: 100%;
+    }
 }

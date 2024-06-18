@@ -232,4 +232,8 @@
     .detail__shop {
         margin-bottom: 70px;
     }
+
+    .shop__comment {
+        flex-wrap: wrap;
+    }
 }

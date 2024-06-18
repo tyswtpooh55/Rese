@@ -99,3 +99,18 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+    .managers-list__box {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .create-manager__box {
+        width: 100%;
+    }
+
+    .create-manager__form {
+        margin: 0 auto;
+    }
+}
