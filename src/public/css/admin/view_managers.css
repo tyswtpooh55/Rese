@@ -7,9 +7,7 @@
 /* 店舗責任者一覧*/
 .managers-list__box {
     width: 45%;
-    min-width: 350px;
     background: #fff;
-    height: 600px;
     overflow-y: auto;
     border-radius: 5px;
 }
@@ -52,7 +50,6 @@
 
 .create-manager__box {
     width: 45%;
-    min-width: 350px;
 }
 
 .create-manager__form {
@@ -104,6 +101,11 @@
     .managers-list__box {
         width: 100%;
         margin-bottom: 50px;
+        padding: 20px 15px;
+    }
+
+    .managers-list__table {
+        width: 100%;
     }
 
     .create-manager__box {
@@ -112,5 +114,6 @@
 
     .create-manager__form {
         margin: 0 auto;
+        height: 450px;
     }
 }

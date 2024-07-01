@@ -48,10 +48,20 @@
                         {{ $pastReservation->number }}人
                     </td>
                 </tr>
+                <tr class="visited-shop__table--row">
+                    <th class="visited-shop__table--label">
+                        Course
+                    </th>
+                    <td class="visited-shop__table--data">
+                        {{ $pastReservation->course->name }}
+                    </td>
+                </tr>
             </table>
+            @if (!$pastReservation->review)
             <div class="visited-shop__btn">
                 <a class="visited-shop__btn--link" href="{{ route('comment', $pastReservation->id) }}">評価する</a>
             </div>
+            @endif
         </div>
         @endforeach
     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Course;
 use App\Models\Reservation;
 use Livewire\Component;
 use App\Models\Shop;
@@ -17,6 +18,9 @@ class ReservationForm extends Component
     public $date;
     public $time;
     public $number;
+    public $courses;
+    public $courseId;
+    public $courseUnselectedId;
     public $firstAvailableDate;
     public $lastAvailableDate;
     public $selectableTimes =[];
@@ -29,9 +33,12 @@ class ReservationForm extends Component
 
         $this->reservationId = $reservationId;
 
+        $courseUnselected = Course::where('price', 0)->first();
+        $this->courseUnselectedId = $courseUnselected->id;
+
         // 予約カレンダーの選択範囲
         $now = Carbon::now();
-        if ($now->format('H:i') >= "23:00") {
+        if ($now->hour >= 22) {
             $this->firstAvailableDate = Carbon::tomorrow()->format('Y-m-d'); // 明日の日付を初期値に設定
         } else {
             $this->firstAvailableDate = Carbon::today()->format('Y-m-d');
@@ -48,16 +55,21 @@ class ReservationForm extends Component
                 $this->date = $reservation->date;
                 $this->time = $reservation->time;
                 $this->number = $reservation->number;
+                $this->courseId = $reservation->course->id;
             }
         } else {
             // 初期化
             $this->date = $this->firstAvailableDate;
             $this->time = null;
             $this->number = 1;
+            $this->courseId = $this->courseUnselectedId;
         }
 
         // 選択可能時間の取得
         $this->updateSelectableTimes();
+
+        // コース取得
+        $this->courses = Course::all();
     }
 
     private function updateSelectableTimes()

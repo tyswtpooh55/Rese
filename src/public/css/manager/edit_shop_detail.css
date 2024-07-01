@@ -7,7 +7,6 @@
 /*店舗詳細*/
 .detail__shop {
     width: 45%;
-    min-width: 350px;
 }
 
 .shop__ttl {
@@ -57,7 +56,6 @@
 /*店舗概要更新*/
 .edit-shop {
     width: 45%;
-    min-width: 350px;
 }
 
 .edit__form--form {

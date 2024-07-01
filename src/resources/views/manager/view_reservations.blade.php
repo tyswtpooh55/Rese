@@ -30,13 +30,13 @@
                         Name
                     </th>
                     <th class="reservations__label">
-                        Date
-                    </th>
-                    <th class="reservations__label">
                         Time
                     </th>
                     <th class="reservations__label">
                         Number
+                    </th>
+                    <th class="reservations__label">
+                        Course
                     </th>
                 </tr>
                 @foreach ($thisDateReservations as $reservation)
@@ -45,13 +45,13 @@
                         {{ $reservation->user->name }}
                     </td>
                     <td class="reservations__data">
-                        {{ $reservation->date }}
-                    </td>
-                    <td class="reservations__data">
                         {{ \Carbon\Carbon::parse($reservation->time)->format('H:i') }}
                     </td>
-                    <td class="reservations__number">
+                    <td class="reservations__data">
                         {{ $reservation->number }}人
+                    </td>
+                    <td class="reservations__data">
+                        {{ $reservation->course->name }}
                     </td>
                 </tr>
                 @endforeach

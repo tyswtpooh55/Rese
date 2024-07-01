@@ -44,12 +44,18 @@
                                 <th class="rese__label">Number</th>
                                 <td class="rese__data">{{ $reservation->number }}人</td>
                             </tr>
+                            <tr class="rese__row">
+                                <th class="rese__label">Course</th>
+                                <td class="rese__data">{{ $reservation->course->name }}<br/>({{ $reservation->course->description }})</td>
+                            </tr>
                         </table>
-                        <div class="rese__edit--btn">
-                            <a class="rese__edit--btn-link" href="{{ route('editReservation', $reservation->id) }}">変更する</a>
-                        </div>
-                        <div class="rese__qr--btn">
-                            <a href="{{ route('reservationQr', $reservation->id) }}" class="rese__qr--btn-link">QRコード</a>
+                        <div class="rese__btn">
+                            <div class="rese__edit--btn">
+                                <a class="rese__edit--btn-link" href="{{ route('editReservation', $reservation->id) }}">変更する</a>
+                            </div>
+                            <div class="rese__qr--btn">
+                                <a href="{{ route('reservationQr', $reservation->id) }}" class="rese__qr--btn-link">QRコード</a>
+                            </div>
                         </div>
                     </div>
                     @endforeach

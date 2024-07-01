@@ -25,8 +25,8 @@ class ShopRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'area_id' => ['required', 'integer'],
-            'genre_id' => ['required', 'integer'],
+            'area_id' => ['required'],
+            'genre_id' => ['required'],
             'image_path' => ['nullable', 'string', 'max:191'],
             'detail' => ['string'],
         ];

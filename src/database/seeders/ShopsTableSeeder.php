@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Shop;
+use Illuminate\Support\Facades\DB;
 
 class ShopsTableSeeder extends Seeder
 {
@@ -14,7 +14,7 @@ class ShopsTableSeeder extends Seeder
      */
     public function run()
     {
-    $shops = [
+    DB::table('shops')->insert([
         [
             'name' => '仙人',
             'area_id' => 1,
@@ -155,10 +155,6 @@ class ShopsTableSeeder extends Seeder
             'image_path' => 'images/sushi.jpg',
             'detail' => '毎日店主自ら市場等に出向き、厳選した魚介類が、お鮨をはじめとした繊細な料理に仕立てられます。また、選りすぐりの種類豊富なドリンクもご用意しております。',
         ],
-    ];
-    foreach ($shops as $shop) {
-        Shop::create($shop);
-    }
-
+    ]);
     }
 }

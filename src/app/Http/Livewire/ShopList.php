@@ -25,7 +25,8 @@ class ShopList extends Component
             'genre',
             'favorites' => function ($query) {
                 $query->where('user_id', Auth::id());
-            }
+            },
+            'reviews',
         ]);
 
         if ($criteria) {

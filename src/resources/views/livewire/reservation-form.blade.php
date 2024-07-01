@@ -25,6 +25,16 @@
             <p class="error">{{ $message }}</p>
         @enderror
     </div>
+    <div class="rese-form__course">
+        <select name="course_id" wire:model='courseId'>
+            @foreach ($courses as $course)
+                <option value="{{ $course->id }}">{{ $course->name }}</option>
+            @endforeach
+        </select>
+        @error('course')
+        <p class="error">{{ $message }}</p>
+        @enderror
+    </div>
     <div class="rese-check">
         <table class="rese-check__table">
             <tr class="check__row">
@@ -42,6 +52,10 @@
             <tr class="check__row">
                 <th class="check__label">Number</th>
                 <td class="check__data">{{ $number }}人</td>
+            </tr>
+            <tr class="check__row">
+                <th class="check__label">Course</th>
+                <td class="check__data">{{ $courses->firstwhere('id', $courseId)->name ?? '' }} (¥{{ $courses->firstwhere('id', $courseId)->price ?? '' }} /人)</td>
             </tr>
         </table>
     </div>
