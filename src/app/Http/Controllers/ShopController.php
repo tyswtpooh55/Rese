@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ReservationRequest;
+use App\Models\Course;
 use App\Models\Shop;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
@@ -33,15 +34,25 @@ class ShopController extends Controller
 
     public function createReservation(ReservationRequest $request)
     {
-        Reservation::create([
+        $courseUnselectedId = Course::where('price', 0)->first()->id;
+
+        $reservingData = [
             'user_id' => Auth::id(),
             'shop_id' => $request->shop_id,
             'date' => $request->date,
             'time' => $request->time,
             'number' => $request->number,
-        ]);
+            'course_id' => $request->course_id,
+        ];
 
-        return view('done');
+        //支払い不要の場合、予約を作成
+        if ($request->course_id == $courseUnselectedId) {
+            Reservation::create($reservingData);
+            return view('done');
+        } else {
+            session(['reserving_data' => $reservingData]);
+            return redirect()->route('checkout.index');
+        }
     }
 
     public function reviews($id)
@@ -49,7 +60,7 @@ class ShopController extends Controller
         $shop = Shop::findOrFail($id);
         $reviews = $shop->reviews()
             ->with('reservation:id,date')
-            ->select('id', 'comment', 'rating', 'reservation_id')
+            ->select('reviews.id', 'comment', 'rating', 'reservation_id')
             ->get();
 
         return view('reviews', compact('shop', 'reviews'));

@@ -19,7 +19,6 @@ class MypageController extends Controller
         $oneHourBefore = Carbon::now()->subHour();
 
         $reservations = Reservation::where('user_id', $user->id)
-            ->with('shop')
             ->get();
 
         $displayReservations = $reservations->filter(function ($reservation) use ($oneHourBefore) {
@@ -112,7 +111,6 @@ class MypageController extends Controller
         $reservation = Reservation::find($request->input('reservation_id'));
         Review::create([
             'reservation_id' =>  $request->input('reservation_id'),
-            'shop_id' => $reservation->shop_id,
             'rating' => $request->input('rating'),
             'comment' => $request->input('comment'),
         ]);

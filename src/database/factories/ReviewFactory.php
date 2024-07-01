@@ -27,15 +27,8 @@ class ReviewFactory extends Factory
             return [];
         }
 
-        //一般ユーザーのID取得
-        $userIds = User::whereDoesntHave('roles', function ($query) {
-            $query->where('name', 'admin')
-            ->orWhere('name', 'manager');
-        })->pluck('id')->toArray();
-
         return [
             'reservation_id' => $pastReservation->id,
-            'shop_id' => $pastReservation->shop_id,
             'rating' => $this->faker->numberBetween(1,5),
             'comment' => $this->faker->realText(100),
         ];

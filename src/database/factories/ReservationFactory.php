@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Course;
 use App\Models\Reservation;
 use App\Models\Shop;
 use App\Models\User;
@@ -37,6 +38,7 @@ class ReservationFactory extends Factory
             'date' => $this->faker->dateTimeBetween('2024-01-01', '2025-01-01')->format('Y-m-d'),
             'time' => $this->faker->randomElement($times),
             'number' => $this->faker->numberBetween(1,10),
+            'course_id' => Course::inRandomOrder()->first()->id,
         ];
     }
 }

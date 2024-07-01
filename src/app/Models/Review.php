@@ -21,9 +21,4 @@ class Review extends Model
     {
         return $this->belongsTo(Reservation::class);
     }
-
-    public function shop()
-    {
-        return $this->belongsTo(Shop::class);
-    }
 }

@@ -4,11 +4,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\MypageController;
-use App\Http\Controllers\PaymentsController;
+use App\Http\Controllers\StripeController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Laravel\Cashier\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +56,14 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/reservation/qr/{id}', [MypageController::class, 'qrCode'])->name('reservationQr');
 });
 
+//Stripe
+Route::prefix('checkout')->name('checkout.')->group(function () {
+    Route::get('/index', [StripeController::class, 'index'])->name('index');
+    Route::post('/session', [StripeController::class, 'checkout'])->name('session');
+    Route::get('/done', [StripeController::class, 'paid'])->name('paid');
+    Route::get('/failed', [StripeController::class, 'failed'])->name('failed');
+});
+
 // 管理者用ルートグループ
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/manager', [AdminController::class, 'viewManagers'])->name('viewManagers');
@@ -76,11 +83,4 @@ Route::prefix('manager')->name('manager.')->middleware(['auth', 'role:manager'])
         Route::get('/detail/{shop}', [ManagerController::class, 'editDetail'])->name('editDetail');
         Route::post('/update/{shop}', [ManagerController::class, 'updateDetail'])->name('updateDetail');
     });
-});
-
-// Stripe支払いルートグループ
-Route::prefix('payments')->name('payments.')->group(function () {
-    Route::get('/', [PaymentsController::class, 'index'])->name('index');
-    Route::post('/', [PaymentsController::class, 'payment'])->name('payment');
-    Route::get('done',[PaymentsController::class, 'complete'])->name('complete');
 });

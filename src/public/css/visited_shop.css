@@ -46,3 +46,13 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+    .visited-shop__wrap {
+        grid-template-columns: none;
+    }
+
+    .visited-shop__card {
+        width: 100%;
+    }
+}

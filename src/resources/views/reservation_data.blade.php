@@ -5,4 +5,5 @@
     <p>Date: {{ $reservation->date }}</p>
     <p>Time: {{ \Carbon\Carbon::parse($reservation->time)->format('H:i') }}</p>
     <p>Number: {{ $reservation->number }}人</p>
+    <p>Course: {{ $reservation->course->name }} (￥{{ $reservation->course->price }}/人)</p>
 </div>

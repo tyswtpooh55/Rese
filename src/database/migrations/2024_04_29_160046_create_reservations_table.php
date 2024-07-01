@@ -26,6 +26,9 @@ class CreateReservationsTable extends Migration
             $table->date('date');
             $table->time('time');
             $table->integer('number');
+            $table->foreignId('course_id')
+                ->constrained('courses')
+                ->cascadeOnUpdate();
             $table->timestamps();
         });
     }

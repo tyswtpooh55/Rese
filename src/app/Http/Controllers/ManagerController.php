@@ -106,7 +106,17 @@ class ManagerController extends Controller
 
     public function createShop(ShopRequest $request)
     {
-        $data = $request->all();
+        if ($request->area_id == 'new') {
+            $area = Area::create(['name' => $request->newArea]);
+            $request->merge(['area_id' => $area->id]);
+        }
+
+        if ($request->genre_id == 'new') {
+            $genre = Genre::create(['name' => $request->newGenre]);
+            $request->merge(['genre_id' => $genre->id]);
+        }
+
+    $data = $request->all();
 
         if ($request->hasFile('upload_image')) {
             $path = $request->file('upload_image')->store('public/images');

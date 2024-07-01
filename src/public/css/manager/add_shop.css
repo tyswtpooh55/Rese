@@ -59,3 +59,18 @@
     font-size: 18px;
     padding: 5px 10px;
 }
+
+@media screen and (max-width: 768px) {
+    .add-shop__form {
+        width: 100%;
+    }
+
+    .add-shop__form form {
+        width: 90%;
+    }
+
+    .form__inp,
+    .form__select {
+        font-size: 14px;
+    }
+}

@@ -18,35 +18,11 @@
                         <p>{{ $message }}</p>
                         @enderror
                     </div>
-                    <div class="form__item">
-                        <label class="form__label" for="area_id">Area</label><br>
-                        <select class="form__select" name="area_id">
-                            <option value="">-- 選択してください --</option>
-                            @foreach ($areas as $area)
-                            <option value="{{ $area->id }}">{{ $area->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="error">
-                        @error('area_id')
-                        <p>{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="form__item">
-                        <label class="form__label" for="genre_id">Genre</label><br>
-                        <select class="form__select" name="genre_id">
-                            <option value="">-- 選択してください --</option>
-                            @foreach ($genres as $genre)
-                            <option value="{{ $genre->id }}">{{ $genre->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="error">
-                        @error('genre_id')
-                        <p>{{ $massage }}</p>
-                        @enderror
-                    </div>
+
+                    @livewire('select-area-and-genre', ['areas' => $areas, 'genres' => $genres])
+
                     @livewire('upload-image', ['storageImages' => $storageImages])
+
                     <div class="form__item">
                         <label class="form__label" for="detail">Detail</label><br>
                         <textarea class="form__textarea" name="detail"></textarea>

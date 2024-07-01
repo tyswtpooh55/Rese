@@ -13,13 +13,15 @@
 /*予約状況*/
 .mypage__rese {
     width: 35%;
-    min-width: 350px;
 }
 
 .rese__heading {
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 auto;
 }
 
 .rese__ttl {
@@ -32,7 +34,6 @@
     background-color: #305dff;
     font-size: 20px;
     text-wrap: nowrap;
-    margin-left: 200px;
     text-decoration: none;
     border: none;
     border-radius: 5px;
@@ -46,7 +47,8 @@
 }
 
 .rese-card {
-    width: 450px;
+    width: 100%;
+    max-width: 450px;
     border-radius: 5px;
     box-shadow: 5px 5px 3px #a7a7a7;
     background-color: #305dff;
@@ -98,9 +100,6 @@
 .rese__qr--btn {
     text-align: right;
     padding: 0 20px;
-}
-
-.rese__qr--btn {
     margin-top: 20px;
 }
 
@@ -117,7 +116,6 @@
 /*お気に入り店舗*/
 .mypage__fav {
     width: 55%;
-    min-width: 400px;
 }
 
 .fav__ttl {
@@ -196,19 +194,29 @@
 }
 
 @media screen and (max-width:768px) {
+    .mypage__heading {
+        font-size: 28px;
+    }
+
     .mypage__rese {
         width: 100%;
         margin-bottom: 50px;
     }
 
     .rese__heading {
-        justify-content: center;
-        flex-wrap: wrap;
+        display: block;
+        width: 80%;
     }
 
     .rese-wrap {
         display: grid;
         justify-content: center;
+    }
+
+    .rese__label,
+    .rese__data {
+        text-wrap: nowrap;
+        font-size: 12px;
     }
 
     .mypage__fav {

@@ -1,13 +1,37 @@
 .payment__content {
     width: 40%;
-    min-width: 600px;
     margin: 20px auto;
-    padding: 20px;
+    padding: 40px;
     text-align: center;
+    background-color: #305dff;
+    border-radius: 5px;
+    box-shadow: 5px 5px 3px #a7a7a7;
 }
 
 .payment__heading h2 {
     font-size: 24px;
+    color: #fff;
+}
+
+.rese__detail--heading h3 {
+    font-size: 18px;
+    color: #fff;
+}
+
+.rese__detail--table {
+    background-color: #4d7fff;
+    padding: 20px 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.rese__detail--label,
+.rese__detail--data {
+    font-size: 16px;
+    font-weight: normal;
+    padding: 5px 10px;
+    text-align: left;
+    color: #fff;
 }
 
 .payment__form {
@@ -15,8 +39,6 @@
     padding: 40px 20px;
     margin: 10px auto;
     border-radius: 5px;
-    box-shadow: 5px 5px 3px #a7a7a7;
-    width: 300px;
     text-align: center;
 }
 
@@ -105,4 +127,19 @@ inp__cvc {
     width: 20px;
     height: 20px;
     transform: translate(8px, 8px);
+}
+
+/*failed.blade.php スタイル*/
+.cancel-content {
+    text-align: center;
+}
+
+.cancel-msg {
+    font-size: 16px;
+}
+
+@media screen and (max-width: 768px) {
+    .payment__content {
+        width: 80%;
+    }
 }
