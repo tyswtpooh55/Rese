@@ -25,10 +25,10 @@ class ShopRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'area_id' => ['required'],
-            'genre_id' => ['required'],
-            'image_path' => ['nullable', 'string', 'max:191'],
-            'detail' => ['string'],
+            'area_id' => ['required', 'string'],
+            'genre_id' => ['required', 'string'],
+            'image_path' => ['required', 'string', 'max:191'],
+            'detail' => ['required', 'string'],
         ];
     }
 
@@ -38,6 +38,8 @@ class ShopRequest extends FormRequest
             'name.required' => '店名を入力してください',
             'area_id.required' => '地域を選択してください',
             'genre_id.required' => 'ジャンルを選択してください',
+            'image_path.required' => '店舗イメージを選択してください',
+            'detail.required' => '店舗詳細を入力してください',
         ];
     }
 }

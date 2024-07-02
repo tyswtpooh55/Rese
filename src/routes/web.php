@@ -25,9 +25,6 @@ Route::get('/', [ShopController::class, 'index']);
 Route::post('/', [ShopController::class, 'index']);
 Route::get('/detail/{id}', [ShopController::class, 'detail'])->name('shop.detail');
 Route::get('/detail/reviews/{id}', [ShopController::class,  'reviews'])->name('reviews');
-Route::get('/thanks', function () {
-        return view('/auth/thanks');
-    })->name('thanks');
 Route::get('/reservation/data/{id}', [ShopController::class, 'reservationData'])->name('reservationData');
 
 // メール認証
@@ -45,6 +42,9 @@ Route::get('/email/verification-notification', function (Request $request) {
 
 // 会員・ログイン済み
 Route::middleware(['auth', 'verified'])->group(function(){
+    Route::get('/thanks', function () {
+        return view('/auth/thanks');
+    })->name('thanks');
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage.index');
     Route::post('/reservation/create', [ShopController::class, 'createReservation'])->name('createReservation');
     Route::post('/reservation/delete/{id}', [MypageController::class, 'deleteReservation'])->name('deleteReservation');
@@ -56,7 +56,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/reservation/qr/{id}', [MypageController::class, 'qrCode'])->name('reservationQr');
 });
 
-//Stripe
+//StripeCheckout
 Route::prefix('checkout')->name('checkout.')->group(function () {
     Route::get('/index', [StripeController::class, 'index'])->name('index');
     Route::post('/session', [StripeController::class, 'checkout'])->name('session');
