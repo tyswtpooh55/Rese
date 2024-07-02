@@ -17,7 +17,7 @@ class CoursesTableSeeder extends Seeder
         DB::table('courses')->insert([
             [
                 'name' => '来店時に注文',
-                'description' => '来店時にご注文',
+                'description' => '事前決済なし',
                 'price' => 0,
             ],
             [

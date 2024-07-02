@@ -60,7 +60,14 @@ class MasterDatabaseSeeder extends Seeder
         $shopManager1->shops()->attach(Shop::where('id', 1)->first()->id);
 
         //一般ユーザーダミーデータ登録
-        User::factory()->count(48)->create();
+        User::create([
+            'name' => 'customer1',
+            'email' => 'customer@example.com',
+            'password' => bcrypt('pass1234'),
+            'email_verified_at' => now(),
+        ]);
+
+        User::factory()->count(17)->create();
 
     }
 }

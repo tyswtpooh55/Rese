@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Reservation;
 use App\Models\Shop;
-use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
 
