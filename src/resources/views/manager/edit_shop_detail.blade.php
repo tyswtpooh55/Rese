@@ -12,7 +12,7 @@
                 <h3 class="shop__ttl--txt">{{ $shop->name }}</h3>
             </div>
             <div class="shop__img">
-                <img src="{{ asset('storage/' . $shop->image_path) }}" alt="image" />
+                <img src="{{ Storage::url($shop->image_path) }}" alt="{{ $shop->name }}" />
             </div>
             <div class="shop__detail-tag">
                 <p class="shop__detail-tag-area">#{{ $shop->area->name }}</p>
@@ -31,6 +31,9 @@
                             <label class="edit__form--label">Shop name</label><br>
                             <input class="edit__form--inp" type="text" name="name" value="{{ $shop->name }}">
                         </div>
+                        @error('name')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
                         <div class="edit__form--area">
                             <label class="edit__form--label">Area</label><br>
                             <select class="edit__form--select" name="area_id">
@@ -39,6 +42,9 @@
                                 @endforeach
                             </select>
                         </div>
+                        @error('area_id')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
                         <div class="edit__form--genre">
                             <label class="edit__form--label">Genre</label><br>
                             <select name="genre_id" class="edit__form--select">
@@ -47,13 +53,22 @@
                                 @endforeach
                             </select>
                         </div>
+                        @error('genre_id')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
                         <div class="edit__form--img">
                             @livewire('upload-image', ['storageImages' => $storageImages])
                         </div>
+                        @error('image_path')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
                         <div class="edit__form--detail">
                             <label class="edit__form--label">店舗概要</label><br>
                             <textarea class="edit__form--textarea" name="detail">{{ $shop->detail }}</textarea>
                         </div>
+                        @error('detail')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
                         <input class="edit__form--btn" type="submit" value="更新">
                     </form>
                 </div>

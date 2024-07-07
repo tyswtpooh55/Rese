@@ -3,7 +3,7 @@
         @forelse ($shops as $shop)
         <div class="shop-card">
             <div class="card__img">
-                <img src="{{ asset('storage/' . $shop->image_path) }}" alt="{{ $shop->name }}" />
+                <img src="{{ Storage::url($shop->image_path) }}" alt="{{ $shop->name }}" />
             </div>
             <div class="card__content">
                 <p class="card__content-ttl">{{ $shop->name }}</p>

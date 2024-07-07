@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\MypageController;
+use App\Http\Controllers\S3Controller;
 use App\Http\Controllers\StripeController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -54,14 +55,13 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/comment/{id}', [MypageController::class, 'comment'])->name('comment');
     Route::post('/createComment', [MypageController::class, 'writeReview'])->name('writeReview');
     Route::get('/reservation/qr/{id}', [MypageController::class, 'qrCode'])->name('reservationQr');
-});
-
-//StripeCheckout
-Route::prefix('checkout')->name('checkout.')->group(function () {
-    Route::get('/index', [StripeController::class, 'index'])->name('index');
-    Route::post('/session', [StripeController::class, 'checkout'])->name('session');
-    Route::get('/done', [StripeController::class, 'paid'])->name('paid');
-    Route::get('/failed', [StripeController::class, 'failed'])->name('failed');
+    //StripeCheckout
+    Route::prefix('checkout')->name('checkout.')->group(function () {
+        Route::get('/index', [StripeController::class, 'index'])->name('index');
+        Route::post('/session', [StripeController::class, 'checkout'])->name('session');
+        Route::get('/done', [StripeController::class, 'paid'])->name('paid');
+        Route::get('/failed', [StripeController::class, 'failed'])->name('failed');
+    });
 });
 
 // 管理者用ルートグループ
@@ -74,13 +74,18 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
 });
 
 // 店舗責任者用ルートグループ
-Route::prefix('manager')->name('manager.')->middleware(['auth', 'role:manager'])->group(function () {
+if (app()->environment(['local'])) {
+    $managerController = ManagerController::class;
+} else {
+    $managerController = S3Controller::class;
+}
+Route::prefix('manager')->name('manager.')->middleware(['auth', 'role:manager'])->group(function () use($managerController) {
     Route::get('/select/{action}', [ManagerController::class, 'selectShop'])->name('selectShop');
-    Route::get('/add', [ManagerController::class, 'addShop'])->name('addShop');
-    Route::post('/create', [ManagerController::class, 'createShop'])->name('createShop');
-    Route::middleware('check.shop')->group(function() {
+    Route::get('/add', [$managerController, 'addShop'])->name('addShop');
+    Route::post('/create', [$managerController, 'createShop'])->name('createShop');
+    Route::middleware('check.shop')->group(function() use($managerController) {
         Route::get('/reservations/{shop}', [ManagerController::class, 'viewReservations'])->name('viewReservations');
-        Route::get('/detail/{shop}', [ManagerController::class, 'editDetail'])->name('editDetail');
-        Route::post('/update/{shop}', [ManagerController::class, 'updateDetail'])->name('updateDetail');
+        Route::get('/detail/{shop}', [$managerController, 'editDetail'])->name('editDetail');
+        Route::post('/update/{shop}', [$managerController, 'updateDetail'])->name('updateDetail');
     });
 });

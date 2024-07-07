@@ -6,7 +6,7 @@
         @foreach ($favorites as $favorite)
         <div class="fav-card">
             <div class="card__img">
-                <img src="{{ asset('storage/' . $favorite->shop->image_path) }}" alt="{{ $favorite->shop->name }}">
+                <img src="{{ Storage::url($favorite->shop->image_path) }}" alt="{{ $favorite->shop->name }}">
             </div>
             <div class="card__content">
                 <p class="card__content-ttl">{{ $favorite->shop->name }}</p>

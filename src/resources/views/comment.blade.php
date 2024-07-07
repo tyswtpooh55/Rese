@@ -11,7 +11,7 @@
                 <h3 class="shop__ttl--txt">{{ $reservation->shop->name }}</h3>
             </div>
             <div class="shop__img">
-                <img src="{{ asset('storage/' . $reservation->shop->image_path) }}" alt="{{ $reservation->shop->name }}" />
+                <img src="{{ Storage::url($reservation->shop->image_path) }}" alt="{{ $reservation->shop->name }}" />
             </div>
             <div class="shop__detail-tag">
                 <p class="shop__detail-tag-area">#{{ $reservation->shop->area->name }}</p>
@@ -55,6 +55,14 @@
                             </th>
                             <td class="comment__data">
                                 {{ $reservation->number }}人
+                            </td>
+                        </tr>
+                        <tr class="comment__row">
+                            <th class="comment__label">
+                                Course
+                            </th>
+                            <td class="comment__data">
+                                {{ $reservation->course->name }}
                             </td>
                         </tr>
                     </table>

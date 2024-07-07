@@ -70,6 +70,7 @@ class MypageController extends Controller
             'date' => $request->date,
             'time' => $request->time,
             'number' => $request->number,
+            'course_id' => $request->course_id,
         ]);
 
         return redirect('/mypage');
@@ -108,7 +109,6 @@ class MypageController extends Controller
 
     public function writeReview(Request $request)
     {
-        $reservation = Reservation::find($request->input('reservation_id'));
         Review::create([
             'reservation_id' =>  $request->input('reservation_id'),
             'rating' => $request->input('rating'),
