@@ -102,4 +102,16 @@
         width: 100%;
         max-width: 400px;
     }
+
+    .email-card__header {
+        font-size: 20px;
+    }
+
+    .email-card__body {
+        font-size: 14px;
+    }
+
+    .email-resend {
+        font-size: 14px;
+    }
 }
