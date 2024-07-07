@@ -31,8 +31,8 @@ class S3Controller extends Controller
         $shop = $request->shop;
 
         if ($request->hasFile('upload_image')) {
-            $path = $request->file('update_image')->store('image');
-            $shop->image_path = Storage::url($path);
+            $path = $request->file('upload_image')->store('images');
+            $shop->image_path = $path;
         } else {
             $shop->image_path = $request->input('image_path');
         }
@@ -75,7 +75,7 @@ class S3Controller extends Controller
 
         if ($request->hasFile('upload_image')) {
             $path = $request->file('upload_image')->store('images');
-            $data['image_path'] = Storage::url($path);
+            $data['image_path'] = $path;
         }
 
         $shop = Shop::create($data);
