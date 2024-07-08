@@ -1,9 +1,0 @@
-[2024-07-08T21:00:01+09:00] Running scheduled command: '/usr/local/bin/php' 'artisan' send:reservation-reminder > '/dev/null' 2>&1
-No scheduled commands are ready to run.
-No scheduled commands are ready to run.
-No scheduled commands are ready to run.
-[2024-07-08T21:15:02+09:00] Running scheduled command: '/usr/local/bin/php' 'artisan' send:reservation-reminder > '/dev/null' 2>&1
-No scheduled commands are ready to run.
-No scheduled commands are ready to run.
-No scheduled commands are ready to run.
-No scheduled commands are ready to run.
