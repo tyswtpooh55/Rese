@@ -19,3 +19,4 @@
 er.drawio.png
 wget-log
 .ssh
+/docker/php/log/
