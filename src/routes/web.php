@@ -23,7 +23,6 @@ use Illuminate\Support\Facades\Route;
 
 // 非会員含め
 Route::get('/', [ShopController::class, 'index']);
-Route::post('/', [ShopController::class, 'index']);
 Route::get('/detail/{id}', [ShopController::class, 'detail'])->name('shop.detail');
 Route::get('/detail/reviews/{id}', [ShopController::class,  'reviews'])->name('reviews');
 Route::get('/reservation/data/{id}', [ShopController::class, 'reservationData'])->name('reservationData');
@@ -53,7 +52,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::post('/reservation/update/{id}', [MypageController::class, 'updateReservation'])->name('updateReservation');
     Route::get('/mypage/visited', [MypageController::class, 'visitedShop'])->name('visitedShop');
     Route::get('/comment/{id}', [MypageController::class, 'comment'])->name('comment');
-    Route::post('/createComment', [MypageController::class, 'writeReview'])->name('writeReview');
+    Route::post('/review/create', [MypageController::class, 'writeReview'])->name('writeReview');
     Route::get('/reservation/qr/{id}', [MypageController::class, 'qrCode'])->name('reservationQr');
     //StripeCheckout
     Route::prefix('checkout')->name('checkout.')->group(function () {
@@ -66,7 +65,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
 // 管理者用ルートグループ
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/manager', [AdminController::class, 'viewManagers'])->name('viewManagers');
+    Route::get('/managers', [AdminController::class, 'viewManagers'])->name('viewManagers');
     Route::post('/manager/create', [AdminController::class, 'createManager'])->name('createManager');
     Route::post('/manager/delete', [AdminController::class, 'deleteManager'])->name('deleteManager');
     Route::get('/email', [AdminController::class, 'writeEmail'])->name('writeEmail');

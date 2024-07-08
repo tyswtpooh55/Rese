@@ -24,9 +24,9 @@ class ManagerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required'],
+            'name' => ['required', 'string', 'max:191'],
             'shop_id' => ['required'],
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', 'unique:users,email', 'string', 'max:191',],
             'password' => ['required', 'min:8', 'max:191'],
         ];
     }

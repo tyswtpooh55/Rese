@@ -12,5 +12,6 @@
     <p>予約店舗: {{ $reservation->shop->name }}</p>
     <p>予約日時: {{ $reservation->date }} {{ $reservation->time }}</p>
     <p>予約コース: {{ $reservation->course->name }} (￥{{ $reservation->course->price }}/人)</p>
+    <p>ご来店お待ちしております。</p>
 </body>
 </html>

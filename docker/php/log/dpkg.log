@@ -1,0 +1,30 @@
+2024-07-08 12:11:32 startup archives unpack
+2024-07-08 12:11:32 install vim-common:all <none> 2:9.0.1378-2
+2024-07-08 12:11:32 status half-installed vim-common:all 2:9.0.1378-2
+2024-07-08 12:11:32 status unpacked vim-common:all 2:9.0.1378-2
+2024-07-08 12:11:32 install vim-runtime:all <none> 2:9.0.1378-2
+2024-07-08 12:11:32 status half-installed vim-runtime:all 2:9.0.1378-2
+2024-07-08 12:11:32 status unpacked vim-runtime:all 2:9.0.1378-2
+2024-07-08 12:11:32 install vim:amd64 <none> 2:9.0.1378-2
+2024-07-08 12:11:32 status half-installed vim:amd64 2:9.0.1378-2
+2024-07-08 12:11:32 status unpacked vim:amd64 2:9.0.1378-2
+2024-07-08 12:11:32 install xxd:amd64 <none> 2:9.0.1378-2
+2024-07-08 12:11:32 status half-installed xxd:amd64 2:9.0.1378-2
+2024-07-08 12:11:32 status unpacked xxd:amd64 2:9.0.1378-2
+2024-07-08 12:11:32 startup packages configure
+2024-07-08 12:11:32 configure xxd:amd64 2:9.0.1378-2 <none>
+2024-07-08 12:11:32 status unpacked xxd:amd64 2:9.0.1378-2
+2024-07-08 12:11:32 status half-configured xxd:amd64 2:9.0.1378-2
+2024-07-08 12:11:32 status installed xxd:amd64 2:9.0.1378-2
+2024-07-08 12:11:32 configure vim-common:all 2:9.0.1378-2 <none>
+2024-07-08 12:11:32 status unpacked vim-common:all 2:9.0.1378-2
+2024-07-08 12:11:32 status half-configured vim-common:all 2:9.0.1378-2
+2024-07-08 12:11:32 status installed vim-common:all 2:9.0.1378-2
+2024-07-08 12:11:32 configure vim-runtime:all 2:9.0.1378-2 <none>
+2024-07-08 12:11:32 status unpacked vim-runtime:all 2:9.0.1378-2
+2024-07-08 12:11:32 status half-configured vim-runtime:all 2:9.0.1378-2
+2024-07-08 12:11:32 status installed vim-runtime:all 2:9.0.1378-2
+2024-07-08 12:11:32 configure vim:amd64 2:9.0.1378-2 <none>
+2024-07-08 12:11:32 status unpacked vim:amd64 2:9.0.1378-2
+2024-07-08 12:11:32 status half-configured vim:amd64 2:9.0.1378-2
+2024-07-08 12:11:33 status installed vim:amd64 2:9.0.1378-2

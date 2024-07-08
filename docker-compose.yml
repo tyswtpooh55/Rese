@@ -12,9 +12,12 @@ services:
       - php
 
   php:
-    build: ./docker/php
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
     volumes:
       - ./src:/var/www/
+      - ./docker/php/log:/var/log
 
   mysql:
     image: mysql:8.0.35

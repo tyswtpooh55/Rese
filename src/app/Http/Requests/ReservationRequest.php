@@ -27,6 +27,7 @@ class ReservationRequest extends FormRequest
             'date' => ['required', 'date'],
             'time' => ['required'],
             'number' => ['required', 'integer', 'min:1', 'max:10'],
+            'course_id' => ['required']
         ];
     }
 
@@ -38,6 +39,7 @@ class ReservationRequest extends FormRequest
             'number.required' => '人数を選択してください',
             'number.min' => '人数は:min人以上を選択してください',
             'number.max' => '人数は:max人以下を選択してください',
+            'course.required' => 'コースを選択してください',
         ];
     }
 }
