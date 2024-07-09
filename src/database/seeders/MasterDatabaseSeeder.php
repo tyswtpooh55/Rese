@@ -61,8 +61,8 @@ class MasterDatabaseSeeder extends Seeder
 
         //一般ユーザーダミーデータ登録
         User::create([
-            'name' => 'customer1',
-            'email' => 'customer@example.com',
+            'name' => 'Customer1',
+            'email' => 'customer1@example.com',
             'password' => bcrypt('pass1234'),
             'email_verified_at' => now(),
         ]);
