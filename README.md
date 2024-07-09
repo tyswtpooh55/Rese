@@ -9,7 +9,7 @@
  - 開発環境: 'http://localhost/'
  - phpMyAdmin: 'http://localhost:8080/'
  - mailhog: 'http://localhost:8025/'
- - 本番環境: http://54.65.6.224
+ - 本番環境: http://54.65.175.162
 
 ## 機能一覧
  - 会員登録
