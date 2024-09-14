@@ -11,14 +11,14 @@ class ShopList extends Component
 {
     public $shops;
 
-    protected $listeners = ['search'];
+    protected $listeners = ['sortAndSearch'];
 
     public function mount()
     {
-        $this->search();
+        $this->sortAndSearch();
     }
 
-    public function search($criteria = null)
+    public function sortAndSearch($criteria = null)
     {
         $query = Shop::with([
             'area',
@@ -26,7 +26,7 @@ class ShopList extends Component
             'favorites' => function ($query) {
                 $query->where('user_id', Auth::id());
             },
-            'reviews',
+            'reviewsWithImages',
         ]);
 
         if ($criteria) {
@@ -39,11 +39,25 @@ class ShopList extends Component
             if (!empty($criteria['keyword'])) {
                 $query->where('name', 'LIKE', "%{$criteria['keyword']}%");
             }
+
+            switch ($criteria['sort']) {
+                case 'random':
+                    $query->inRandomOrder();
+                    break;
+                case 'high-rating':
+                    $query->withAvg('reviewsWithImages', 'rating')
+                        ->orderByRaw('COALESCE(reviews_with_images_avg_rating, 0) DESC');
+                    break;
+                case 'low-rating':
+                    $query->withAvg('reviewsWithImages', 'rating')
+                        ->orderByRaw('COALESCE(reviews_with_images_avg_rating, 10) ASC');
+                    break;
+            }
         }
 
         $this->shops = $query->get()->map(function ($shop) {
             $shop->isFavorited = $shop->favorites->isNotEmpty();
-            $shop->averageRating = $shop->reviews->avg('rating') ?? 0;
+            $shop->averageRating = $shop->reviewsWithImages->avg('rating') ?? 0;
             return $shop;
         });
     }

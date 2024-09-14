@@ -11,7 +11,7 @@
     @livewireStyles
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -53,6 +53,12 @@
                                 <form action="{{ route('admin.writeEmail') }}" method="GET">
                                     @csrf
                                     <button class="menu__label" type="submit">Send Email</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="{{ route('admin.add.shop') }}" method="GET">
+                                    @csrf
+                                    <button class="menu__label" type="submit">Add Shop</button>
                                 </form>
                             </li>
                             @endrole
