@@ -43,4 +43,9 @@ class Shop extends Model
     {
         return $this->hasManyThrough(Review::class, Reservation::class);
     }
+
+    public function reviewsWithImages()
+    {
+        return $this->hasMany(ReviewWithImages::class);
+    }
 }

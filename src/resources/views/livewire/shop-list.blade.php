@@ -15,7 +15,7 @@
                     <div class="rating-star" style="--rating: {{ $shop->averageRating }};"></div>
                 </div>
                 <div class="card__content-btn">
-                    <a href="{{ route('shop.detail', ['id' => $shop->id]) }}" class="card__content-detail--btn">詳しくみる</a>
+                    <a href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}" class="card__content-detail--btn">詳しくみる</a>
                     @if (Auth::check())
                     <button class="card__content-favorite--btn" wire:click='toggleFavorite({{ $shop->id }})'>
                         <img src="{{ $shop->isFavorited ? '/images/like.clicked.png' : '/images/like.unclicked.png' }}" alt="{{ $shop->isFavorited ? 'unlike' : 'like' }}" class="favorite-icon">
@@ -29,5 +29,5 @@
             <p>該当店舗がありません</p>
         </div>
         @endforelse
-    </div>
+    </div> 
 </div>

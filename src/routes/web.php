@@ -21,10 +21,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Proテスト～
+Route::get('/about/{shop_id}', [ShopController::class, 'aboutShop'])->name('shop.detail');
+
+Route::middleware(['auth', 'verified'])->group(function() {
+    Route::get('/post/review/{shop_id}', [ShopController::class, 'writeReview'])->name('write.review');
+    Route::post('/post/review/{shop_id}', [ShopController::class, 'postReview'])->name('post.review');
+    Route::get('/edit/review/{review_id}', [ShopController::class, 'editReview'])->name('edit.review');
+    Route::post('edit/review/{review_id}', [ShopController::class, 'updateReview'])->name('update.review');
+    Route::post('/delete/review/{review_id}', [ShopController::class, 'deleteReview'])->name('delete.review');
+
+    Route::middleware(['role:admin'])->group(function () {
+        Route::get('admin/add/shop', [AdminController::class, 'addShop'])->name('admin.add.shop');
+        Route::post('admin/add/shop/check', [AdminController::class, 'checkCsv'])->name('admin.check.csv');
+        Route::post('/admin/add/shop', [AdminController::class, 'importCsv'])->name('admin.import.csv');
+    });
+});
+
+Route::get('/all/reviews/{shop_id}', [ShopController::class, 'allReviews'])->name('all.reviews');
+
+
+//～Proテスト
+
 // 非会員含め
 Route::get('/', [ShopController::class, 'index']);
-Route::get('/detail/{id}', [ShopController::class, 'detail'])->name('shop.detail');
-Route::get('/detail/reviews/{id}', [ShopController::class,  'reviews'])->name('reviews');
+// Route::get('/detail/{id}', [ShopController::class, 'detail'])->name('shop.detail');
+// Route::get('/detail/reviews/{shop_id}', [ShopController::class,  'reviews'])->name('reviews');
 Route::get('/reservation/data/{id}', [ShopController::class, 'reservationData'])->name('reservationData');
 
 // メール認証

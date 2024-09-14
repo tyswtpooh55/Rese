@@ -1,0 +1,59 @@
+.csv__form {
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.form__box {
+    width: 500px;
+    display: flex;
+    margin: 50px auto 20px auto;
+    border: 1px solid #a7a7a7;
+    border-radius: 5px;
+}
+
+.form__label {
+    padding: 5px 15px;
+    background-color: #4d7fff;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-wrap: nowrap;
+}
+
+.form__input {
+    font-size: 16px;
+    align-self: center;
+    padding-left: 15px;
+}
+
+.form__input::file-selector-button {
+    display: none;
+}
+
+.errors__list {
+    margin-top: 20px;
+    color: #000;
+}
+
+.errors__list ul {
+    list-style: none;
+}
+
+.error__message {
+    margin-bottom: 10px;
+}
+
+.csv__form--btn {
+    margin: 50px auto;
+    border: none;
+    background-color: #305dff;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 5px;
+    padding: 10px 30px;
+    cursor: pointer;
+}
