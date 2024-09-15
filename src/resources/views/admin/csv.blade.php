@@ -17,13 +17,13 @@
                 @error('csvFile')
                 <p class="error">{{ $message }}</p>
                 @enderror
-                @if (session('errors'))
+                @if ($errors->has('csv_errors') || $errors->has('img_errors'))
                 <div class="errors__list">
                     <ul>
-                        @foreach (session('errors')->get('upload_errors', []) as $error)
+                        @foreach ($errors->get('csv_errors') as $error)
                         <li class="error__message">{{ $error }}</li>
                         @endforeach
-                        @foreach (session('errors')->get('img_errors', []) as $error)
+                        @foreach ($errors->get('img_errors') as $error)
                         <li class="error__message">{{ $error }}</li>
                         @endforeach
                     </ul>
@@ -36,8 +36,14 @@
                 @error('imgs.*')
                 <p class="error">{{ $message }}</p>
                 @enderror
-                @if ($errors->has('same_img_error'))
-                    <p class="error">{{ $errors->first('same_img_error') }}</p>
+                @if ($errors->has('same_img_url_errors'))
+                    <div class="errors__list">
+                        <ul>
+                            @foreach ($errors->get('same_img_url_errors') as $error)
+                                <li class="error__message">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 @endif
                 <button class="csv__form--btn">データを確認</button>
             </form>

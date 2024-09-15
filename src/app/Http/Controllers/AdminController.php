@@ -119,15 +119,25 @@ class AdminController extends Controller
 
     public function checkCsv(CsvImportRequest $request)
     {
+        $errors = new MessageBag();
+
+        //画像アップロード
         if ($request->hasFile('imgs')) {
+            $sameImgUrlErrors = [];
             foreach ($request->file('imgs') as $img) {
                 $imgName = $img->getClientOriginalName();
                 $filePath = 'public/images/' . $imgName;
+
+                //同一の画像名の存在の有無
                 if (Storage::exists($filePath)) {
-                    return back()->withErrors(['same_img_error' => 'ストレージ内に同じ名前のファイルが存在します: ' . $imgName]);
+                    $sameImgUrlErrors[] = 'ストレージ内に同じ画像URLが存在します: ' . $imgName;
                 } else {
                 $img->storeAs('public/images', $imgName);
                 }
+            }
+
+            if (!empty($sameImgUrlErrors)) {
+                $errors->merge(['same_img_url_errors' => $sameImgUrlErrors]);
             }
         }
 
@@ -149,15 +159,15 @@ class AdminController extends Controller
 
         fclose($fp);
 
+        //CSVデータのバリデーション
         $validateErrors = $this->validateCsvData($csvData);
 
         if (!is_null($validateErrors)) {
-            session()->flash('errors', $validateErrors);
-            return back();
+            $errors->merge(['csv_errors' => $validateErrors->getBag('default')->all()]);
         }
 
         // 画像の存在確認
-        $imageErrors = [];
+        $imgErrors = [];
         foreach ($csvData as $key => $row) {
             $imgName = $row[3];
             $filePath = 'public/images/' . basename($imgName);
@@ -168,13 +178,11 @@ class AdminController extends Controller
         }
 
         if (!empty($imgErrors)) {
-            $errors = new ViewErrorBag();
-            $messages = new MessageBag(['img_errors' => $imageErrors]);
-            $errors->put('default', $messages);
+            $errors->merge(['img_errors' => $imgErrors]);
+        }
 
-            session()->flash('errors', $errors);
-
-            return back()->withErrors(['img_errors' => $imgErrors]);
+        if ($errors->isNotEmpty()) {
+            return redirect()->back()->withErrors($errors);
         }
 
         return view('admin.csv_preview',
