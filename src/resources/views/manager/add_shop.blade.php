@@ -6,8 +6,13 @@
 
 @section('content')
     <div class="content add-content">
+        <div class="add-shop__content">
+            <form action="{{ route('manager.add.shop.csv') }}" class="csv-import">
+                @csrf
+                <button class="csv-import__btn">csvインポート</button>
+            </form>
         <div class="add-shop__form">
-            <form action="{{ route('manager.createShop') }}" enctype="multipart/form-data" method="POST">
+            <form action="{{ route('manager.createShop') }}" enctype="multipart/form-data" method="POST" class="add-shop__form--form">
                 @csrf
                 <div class="form__item">
                     <label class="form__label" for="name">Shop name</label><br>
@@ -31,6 +36,7 @@
                     <input class="form__btn--btn" type="submit" value="作成">
                 </div>
             </form>
+        </div>
         </div>
     </div>
 @endsection

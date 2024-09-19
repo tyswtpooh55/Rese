@@ -3,16 +3,39 @@
     justify-content: center;
 }
 
-.add-shop__form {
+.add-shop__content {
+    width: 80%;
+    margin: 0 auto;
     background: #fff;
     border-radius: 5px;
     padding: 30px;
-    width: 80%;
+}
+
+.csv-import {
+    display: flex;
+    width: 65%;
+    justify-content: end;
+    margin: 20px auto;
+}
+
+.csv-import__btn {
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: #305dff;
+    color: #fff;
+    font-size: 18px;
+    text-wrap: nowrap;
+    cursor: pointer;
+}
+
+.add-shop__form {
+    width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.add-shop__form form {
+.add-shop__form--form {
     width: 70%;
 }
 
@@ -61,11 +84,15 @@
 }
 
 @media screen and (max-width: 768px) {
+    .add-shop__content {
+        width: 100%;
+    }
+
     .add-shop__form {
         width: 100%;
     }
 
-    .add-shop__form form {
+    .add-shop__form--form {
         width: 90%;
     }
 

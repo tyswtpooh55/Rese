@@ -55,12 +55,6 @@
                                     <button class="menu__label" type="submit">Send Email</button>
                                 </form>
                             </li>
-                            <li>
-                                <form action="{{ route('admin.add.shop') }}" method="GET">
-                                    @csrf
-                                    <button class="menu__label" type="submit">Add Shop</button>
-                                </form>
-                            </li>
                             @endrole
 
                             <!-- 店舗責任者用メニュー -->

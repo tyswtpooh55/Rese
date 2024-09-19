@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/admin/csv_preview.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/manager/csv_preview.css') }}">
 @endsection
 
 @section('content')
     <div class="content">
         <h3 class="csv-preview__ttl">インポート内容の確認</h3>
-
         <div class="csv-preview__table">
             <table class="csv-preview__table--table">
                 <tr class="csv-preview__row">
@@ -25,7 +24,7 @@
             </table>
         </div>
         <div class="csv-import__form">
-            <form action="{{ route('admin.import.csv') }}" method="POST">
+            <form action="{{ route('manager.import.csv') }}" method="POST">
                 @csrf
                 <input type="hidden" name="csvData" value="{{ json_encode($csvData) }}">
                 <button type="button" onclick="history.back()" class="back__btn">戻る</button>

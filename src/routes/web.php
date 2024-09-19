@@ -31,10 +31,10 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::post('edit/review/{review_id}', [ShopController::class, 'updateReview'])->name('update.review');
     Route::post('/delete/review/{review_id}', [ShopController::class, 'deleteReview'])->name('delete.review');
 
-    Route::middleware(['role:admin'])->group(function () {
-        Route::get('admin/add/shop', [AdminController::class, 'addShop'])->name('admin.add.shop');
-        Route::post('admin/add/shop/check', [AdminController::class, 'checkCsv'])->name('admin.check.csv');
-        Route::post('/admin/add/shop', [AdminController::class, 'importCsv'])->name('admin.import.csv');
+    Route::middleware(['role:manager'])->group(function () {
+        Route::get('admin/add/shop/csv', [ManagerController::class, 'addShopWithCsv'])->name('manager.add.shop.csv');
+        Route::post('admin/add/shop/check', [ManagerController::class, 'checkCsv'])->name('manager.check.csv');
+        Route::post('/admin/add/shop', [ManagerController::class, 'importCsv'])->name('manager.import.csv');
     });
 });
 

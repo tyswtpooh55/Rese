@@ -1,13 +1,14 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/admin/csv.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/manager/csv.css') }}">
 @endsection
 
 @section('content')
     <div class="content">
         <div class="csv__form">
-            <form action="{{ route('admin.check.csv') }}" method="POST" enctype="multipart/form-data"
+            <h3 class="csv__ttl">CSVインポート</h3>
+            <form action="{{ route('manager.check.csv') }}" method="POST" enctype="multipart/form-data"
                 class="csv__form--form">
                 @csrf
                 <div class="form__box">
