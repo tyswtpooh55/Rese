@@ -287,22 +287,28 @@ class ManagerController extends Controller
 
     public function importCsv(Request $request)
     {
+        $user = Auth::user();
         $csvData = json_decode($request->input('csvData'), true);
-
 
         foreach ($csvData as $data) {
             $area = Area::where('name', $data[1])->first();
             $genre = Genre::where('name', $data[2])->first();
             $image_path = 'images/' . $data[3];
 
-            Shop::create([
+            $newShop = Shop::create([
                 'name' => $data[0],
                 'area_id' => $area->id,
                 'genre_id' => $genre->id,
                 'image_path' => $image_path,
                 'detail' => $data[4],
             ]);
+
+            DB::table('shop_user')->insert([
+                'shop_id' => $newShop->id,
+                'user_id' => $user->id,
+            ]);
         }
+
         return redirect('/');
     }
 }
