@@ -137,7 +137,7 @@ class ShopController extends Controller
                 $path = $img->store('public/images/reviews');
                 ReviewImage::create([
                     'review_id' => $review->id,
-                    'img_url' => str_replace('public', '', $path),
+                    'img_url' => str_replace('public/', '', $path),
                 ]);
             }
         }
@@ -170,7 +170,7 @@ class ShopController extends Controller
                 $path = $img->store('public/images/reviews');
                 ReviewImage::create([
                     'review_id' => $review_id,
-                    'img_url' => str_replace('public', '', $path),
+                    'img_url' => str_replace('public/', '', $path),
                 ]);
             }
         }

@@ -82,7 +82,7 @@ class ManagerController extends Controller
         } else {
             $imagePath = $request->input('image_path');
             if ($imagePath) {
-                $shop->image_path = str_replace('public', '', $imagePath);
+                $shop->image_path = str_replace('public/', '', $imagePath);
             }
         }
 
@@ -127,7 +127,7 @@ class ManagerController extends Controller
             $data['image_path'] = $path;
         }
 
-        $data['image_path'] = str_replace('public', '', $data['image_path']);
+        $data['image_path'] = str_replace('public/', '', $data['image_path']);
 
         $shop = Shop::create($data);
 
